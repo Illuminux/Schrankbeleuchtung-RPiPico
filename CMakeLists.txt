@@ -47,7 +47,9 @@ pico_enable_stdio_usb(Schrankbeleuchtung 1)
 # Add the standard library to the build
 target_link_libraries(Schrankbeleuchtung
         pico_stdlib
-        hardware_pwm)
+        hardware_pwm
+        hardware_irq
+        hardware_timer)
 
 # Add the standard include files to the build
 target_include_directories(Schrankbeleuchtung PRIVATE

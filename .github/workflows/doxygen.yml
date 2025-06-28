@@ -8,6 +8,9 @@ jobs:
   doxygen:
     runs-on: ubuntu-latest
     steps:
+      - name: Ensure docs directory exists
+        run: mkdir -p ./docs
+
       - name: Checkout repository
         uses: actions/checkout@v3
 

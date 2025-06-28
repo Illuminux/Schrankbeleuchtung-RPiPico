@@ -17,7 +17,8 @@
  */
 
 #include "cabinetLight.h"   // Header-Datei der CabinetLight-Klasse
-#include <algorithm>    
+#include <algorithm>
+#include <cstdio>
 
 // Definition der statischen Instanz
 CabinetLight* CabinetLight::instance = nullptr;
@@ -28,20 +29,26 @@ CabinetLight* CabinetLight::instance = nullptr;
  */ 
 CabinetLight::CabinetLight() {
 
-    instance = this; // Singleton-Instanz setzen
-
-    // Initialisiere die Standard-Ein/Ausgabe
+    // Initialisiere die Standard-Ein/Ausgabe (nur einmal nötig, aber für Debug hier belassen)
     stdio_init_all();
+    printf("[DEBUG] CabinetLight Konstruktor aufgerufen.\n");
+
+    instance = this; // Singleton-Instanz setzen
 
     // Initialisiere die GPIO-Pins für die LEDs
     for (int gpio : LED_PINS) {
+
         setupPwmLEDs(gpio);
     }
 
     // Initialisiere die GPIO-Pins für die Sensoren
     for (int gpio : SENSOR_PINS) {
+        
         setupSensors(gpio);
     }
+
+    // Debug-Ausgabe, um den Abschluss des Konstruktors zu bestätigen
+    printf("[DEBUG] CabinetLight Konstruktor abgeschlossen.\n");
 }
 
 /**
@@ -50,45 +57,71 @@ CabinetLight::CabinetLight() {
  */
 void CabinetLight::setupPwmLEDs(uint8_t gpio) {
 
+    // Debug-Ausgabe, um den GPIO-Pin anzuzeigen, der für PWM konfiguriert wird
+    printf("[DEBUG] setupPwmLEDs: Konfiguriere PWM für GPIO %d\n", gpio);
+
     // Initialisiere den GPIO-Pin für PWM
 
     // Setze den GPIO-Pin auf die PWM-Funktion
     // Dies ist notwendig, um den GPIO-Pin als PWM-Ausgang zu konfigurieren.
-    gpio_set_function(gpio, GPIO_FUNC_PWM);   
-    
+    printf("[DEBUG] setupPwmLEDs: Setze GPIO %d auf PWM-Funktion\n", gpio);
+    // gpio_set_function ist eine Funktion, die den GPIO-Pin auf die gewünschte Funktion setzt.
+    gpio_set_function(gpio, GPIO_FUNC_PWM);
+
     // Initialisiere den GPIO-Pin
     // Dies ist notwendig, um den GPIO-Pin für die PWM-Funktion vorzubereiten.
+    printf("[DEBUG] setupPwmLEDs: Initialisiere GPIO %d\n", gpio);
+    // gpio_init ist eine Funktion, die den GPIO-Pin initialisiert.
     gpio_init(gpio);
 
     // Setze den GPIO-Pin als Ausgang
+    printf("[DEBUG] setupPwmLEDs: Setze GPIO %d als Ausgang\n", gpio);
+    // gpio_set_dir ist eine Funktion, die den GPIO-Pin als Eingang oder Ausgang konfiguriert.
+    // Hier wird der GPIO-Pin als Ausgang gesetzt, da er für PWM-Ausgaben verwendet
     gpio_set_dir(gpio, GPIO_OUT);
 
     // Deaktiviere Pull-Up/Pull-Down-Widerstände
     // Dies ist wichtig, da PWM-Ausgänge keine Pull-Up/Pull-Down-Widerstände benötigen
     // und sie die PWM-Signale stören könnten.
+    printf("[DEBUG] setupPwmLEDs: Deaktiviere Pull-Up/Pull-Down-Widerstände für GPIO %d\n", gpio);
+    // gpio_set_pulls ist eine Funktion, die die Pull-Up/Pull-Down-W
     gpio_set_pulls(gpio, false, false);
 
     // Konfiguriere den PWM-Slice für den GPIO-Pin
+    printf("[DEBUG] setupPwmLEDs: Konfiguriere PWM-Slice für GPIO %d\n", gpio);
+    // Konvertiere den GPIO-Pin in den entsprechenden PWM-Slice
     uint slice = pwm_gpio_to_slice_num(gpio);
 
     // Setze die PWM-Konfiguration
     // Hier wird die Standardkonfiguration für den PWM-Slice abgerufen.
+    printf("[DEBUG] setupPwmLEDs: Hole Standard-PWM-Konfiguration für Slice %d\n", slice);
+    // pwm_get_default_config ist eine Funktion, die die Standard-PWM-Konfiguration zurückg
     pwm_config config = pwm_get_default_config();
 
     // Setze die PWM-Frequenz und den Wrap-Wert
     // Die Frequenz wird auf 8 kHz gesetzt, was für die meisten LED-Anwendungen geeignet ist.
+    printf("[DEBUG] setupPwmLEDs: Setze PWM-Frequenz auf 8 kHz für Slice %d\n", slice);
+    // pwm_config_set_clkdiv ist eine Funktion, die den Taktteiler für die
     pwm_config_set_clkdiv(&config, 125.0f);
     
     // Setze den Wrap-Wert für 16-bit PWM
+    printf("[DEBUG] setupPwmLEDs: Setze Wrap-Wert auf %d für Slice %d\n", PWM_WRAP, slice);
+    // pwm_config_set_wrap ist eine Funktion, die den Wrap-Wert für die PWM-Ausgabe konfiguriert.
     pwm_config_set_wrap(&config, PWM_WRAP);
 
     // Setze den PWM-Kanal für den GPIO-Pin
+    printf("[DEBUG] setupPwmLEDs: Setze PWM-Kanal für GPIO %d\n", gpio);
+    // pwm_gpio_to_channel ist eine Funktion, die den GPIO-Pin in den entsprechenden PWM
     pwm_init(slice, &config, true);
 
-    // Setze den PWM-Ausgang auf 0 (ausgeschaltet)
+    // Setze den PWM-Ausgang auf 0 (ausgeschaltet)  
+    printf("[DEBUG] setupPwmLEDs: Setze PWM-Ausgang für GPIO %d auf 0\n", gpio);
+    // pwm_set_gpio_level ist eine Funktion, die den PWM-Ausgang auf den angegebenen
     pwm_set_gpio_level(gpio, 0);
     
     // Aktiviere den PWM-Ausgang
+    printf("[DEBUG] setupPwmLEDs: Aktiviere PWM-Ausgang für Slice %d\n", slice);
+    // pwm_set_enabled ist eine Funktion, die den PWM-Ausgang aktiviert.
     pwm_set_enabled(slice, true);
 }
 
@@ -98,15 +131,23 @@ void CabinetLight::setupPwmLEDs(uint8_t gpio) {
  */
 void CabinetLight::setupSensors(uint8_t gpio) {
 
+    // Debug-Ausgabe, um den GPIO-Pin anzuzeigen, der für den Sensor konfiguriert wird
+    printf("[DEBUG] setupSensors: Konfiguriere Sensor GPIO %d\n", gpio);
+
     // Setze den GPIO-Pin als Eingang
+    printf("[DEBUG] setupSensors: Setze GPIO %d als Eingang\n", gpio);
+    // gpio_init ist eine Funktion, die den GPIO-Pin initialisiert.
     gpio_init(gpio);
 
     // Setze den GPIO-Pin als Eingang für die Reedkontakte
+    printf("[DEBUG] setupSensors: Setze GPIO %d als Eingang\n", gpio);
+    // gpio_set_dir ist eine Funktion, die den GPIO-Pin als Eingang oder Ausgang konfiguriert.
     gpio_set_dir(gpio, GPIO_IN);
 
-    // Deaktiviere Pull-Down-Widerstände
-    // Reedkontakte benötigen in der Regel Pull-Up-Widerstände, 
-    // um im offenen Zustand einen definierten Zustand zu haben
+    // Aktiviere Pull-Up-Widerstände
+    // Reedkontakte benötigen in der Regel Pull-Up-Widerstände, um im offenen Zustand einen definierten Zustand zu haben
+    printf("[DEBUG] setupSensors: Aktiviere Pull-Up-Widerstände für GPIO %d\n", gpio);
+    // gpio_pull_up ist eine Funktion, die den Pull-Up-Widerstand für den GPIO
     gpio_pull_up(gpio);
 
     // Finde den Index von gpio im SENSOR_PINS-Array (mit std::find)
@@ -114,14 +155,20 @@ void CabinetLight::setupSensors(uint8_t gpio) {
 
     // Wenn der GPIO-Pin in SENSOR_PINS gefunden wurde, aktualisiere lastTriggerTime
     if (it != SENSOR_PINS.end()) {
+
         // Berechne den Index des gefundenen GPIO-Pins
         int index = std::distance(SENSOR_PINS.begin(), it);
+
         // Setze die letzte Triggerzeit für diesen Sensor
+        printf("[DEBUG] setupSensors: Setze letzte Triggerzeit für GPIO %d auf aktuelle Zeit\n", gpio);
+        // get_absolute_time() gibt die aktuelle Zeit in Mikrosekunden zurück
         lastTriggerTime[index] = get_absolute_time();
     }
 
     // Registriere den GPIO-Interrupt für den Sensor
     // Dies ermöglicht es, auf Änderungen des GPIO-Pins zu reagieren
+    printf("[DEBUG] setupSensors: Registriere GPIO-Interrupt für GPIO %d\n", gpio);
+    // gpio_set_irq_enabled_with_callback ist eine Funktion, die den GPIO-Pin für Interrupts konfiguriert.
     gpio_set_irq_enabled_with_callback(
         gpio,   // Aktiviere Interrupts für diesen GPIO-Pin
         GPIO_IRQ_EDGE_FALL | GPIO_IRQ_EDGE_RISE,  // Reagiere auf fallende und steigende Flanken
@@ -138,15 +185,17 @@ void CabinetLight::setupSensors(uint8_t gpio) {
  */
 void CabinetLight::fadeLed(uint gpio, bool on) {
 
+    // Debug-Ausgabe, um den GPIO-Pin und den Zustand der LED anzuzeigen
+    printf("[DEBUG] fadeLed: GPIO %d, Zustand: %s\n", gpio, on ? "EIN" : "AUS");
+
     // Überprüfe, ob der GPIO-Pin gültig ist
     if (gpio < 0 || gpio >= DEV_COUNT) {
+        printf("[ERROR] fadeLed: Ungültiger GPIO-Pin %d\n", gpio);
         return; // Ungültiger GPIO-Pin, nichts tun
     }   
 
     // Konvertiere den GPIO-Pin in den entsprechenden PWM-Slice und Kanal
     uint slice = pwm_gpio_to_slice_num(gpio);
-
-    // Konvertiere den GPIO-Pin in den entsprechenden PWM-Kanal
     uint channel = pwm_gpio_to_channel(gpio);
 
     // Setze den PWM-Kanal auf den gewünschten Zustand
@@ -186,6 +235,9 @@ void CabinetLight::fadeLed(uint gpio, bool on) {
  * @param events Ereignisse, die den Interrupt ausgelöst haben
  */
 void CabinetLight::gpioCallback(uint gpio, uint32_t events) {
+
+    // Debug-Ausgabe, um den GPIO-Pin und die Ereignisse anzuzeigen
+    printf("[DEBUG] gpioCallback: GPIO %d, Events: 0x%08x\n", gpio, events);
     
     // Überprüfe, ob die Instanz existiert
     if (instance) {
@@ -203,8 +255,13 @@ void CabinetLight::gpioCallback(uint gpio, uint32_t events) {
  */
 void CabinetLight::handleGpioCallback(uint gpio, uint32_t events) {
 
+    // Debug-Ausgabe, um den GPIO-Pin und die Ereignisse anzuzeigen
+    printf("[DEBUG] handleGpioCallback: GPIO %d, Events: 0x%08x\n", gpio, events);
+
     // Überprüfe, ob der GPIO-Pin gültig ist
     if (gpio < 0 || gpio >= DEV_COUNT) {
+
+        printf("[ERROR] handleGpioCallback: Ungültiger GPIO-Pin %d\n", gpio);
         return; // Ungültiger GPIO-Pin, nichts tun
     }
 
@@ -252,4 +309,8 @@ void CabinetLight::handleGpioCallback(uint gpio, uint32_t events) {
             }
         }
     }
+
+    // Debug-Ausgabe, um den Abschluss der Interrupt-Verarbeitung zu bestätigen
+    printf("[DEBUG] handleGpioCallback: Interrupt-Verarbeitung für GPIO %d abgeschlossen.\n", gpio);
+
 }

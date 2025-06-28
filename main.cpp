@@ -20,6 +20,7 @@
  */
 
 #include "cabinetLight.h"
+#include <cstdio>
 
 // Globale Instanz der CabinetLight-Klasse
 // Diese Instanz wird im Hauptprogramm verwendet, um die CabinetLight-Funktionen zu nutzen
@@ -36,13 +37,19 @@ CabinetLight *cabinetLight = nullptr;
  */
 int main() {
     
+    // Initialisiere Standard-I/O für Debug-Ausgaben
+    stdio_init_all();
+    printf("[DEBUG] Firmware-Start.\n");
+
     // Erstelle eine neue Instanz der CabinetLight-Klasse
     // Diese Instanz initialisiert die GPIO-Pins und PWM-Ausgänge für die LEDs
     cabinetLight = new CabinetLight();
+    printf("[DEBUG] CabinetLight Instanz erstellt: %p\n", cabinetLight);
     
     // Überprüfe, ob die CabinetLight-Instanz erfolgreich erstellt wurde
     // Wenn die Instanz nicht erstellt werden konnte, gibt es einen Fehler
     if (!cabinetLight) {
+        printf("[ERROR] Fehler beim Erstellen der CabinetLight Instanz!\n");
         return -1; // Fehler beim Erstellen der CabinetLight Instanz
     }
 
@@ -53,8 +60,9 @@ int main() {
     // von einem Sensor ausgelöst wird.
     // Diese Schleife ist notwendig, um die Firmware am Laufen zu halten,
     // da die Verarbeitung der Sensorereignisse in den Interrupt-Handlern erfolgt.
+    printf("[DEBUG] Eintritt in die Hauptschleife.\n");
     while (true) {
-
+        
         // Halte die Firmware im Leerlauf
         tight_loop_contents(); // Idle loop
     }

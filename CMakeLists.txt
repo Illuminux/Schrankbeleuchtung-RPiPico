@@ -23,7 +23,7 @@ if (EXISTS ${picoVscode})
     include(${picoVscode})
 endif()
 # ====================================================================================
-set(PICO_BOARD pico2_w CACHE STRING "Board type")
+set(PICO_BOARD pico_w CACHE STRING "Board type")
 
 # Pull in Raspberry Pi Pico SDK (must be before project)
 include(pico_sdk_import.cmake)
@@ -35,12 +35,15 @@ pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(Schrankbeleuchtung main.cpp )
+add_executable(
+    Schrankbeleuchtung 
+    main.cpp
+    cabinetLight.cpp)
 
 pico_set_program_name(Schrankbeleuchtung "Schrankbeleuchtung")
 pico_set_program_version(Schrankbeleuchtung "0.1")
 
-# Modify the below lines to enable/disable output over UART/USBs
+# Modify the below lines to enable/disable output over UART/USB
 pico_enable_stdio_uart(Schrankbeleuchtung 0)
 pico_enable_stdio_usb(Schrankbeleuchtung 1)
 
@@ -48,18 +51,12 @@ pico_enable_stdio_usb(Schrankbeleuchtung 1)
 target_link_libraries(Schrankbeleuchtung
         pico_stdlib
         hardware_pwm
-        hardware_irq
-        hardware_timer)
+        hardware_gpio)
 
 # Add the standard include files to the build
 target_include_directories(Schrankbeleuchtung PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}
 )
-
-# Add any user requested libraries
-target_link_libraries(Schrankbeleuchtung 
-        pico_cyw43_arch_none
-        )
 
 pico_add_extra_outputs(Schrankbeleuchtung)
 

@@ -5,11 +5,9 @@
 #define CABINET_LIGHT_HPP
 
 #include "pico/stdlib.h"
-#include "hardware/pwm.h"
+#include "pico/time.h"
 #include "hardware/gpio.h"
-#include "hardware/timer.h"
-#include "hardware/irq.h"
-#include "hardware/structs/pwm.h"
+#include "hardware/pwm.h"
 #include <vector>
 
 /**

@@ -1,7 +1,6 @@
 
-#include "cabinetLight.hpp"
+#include "cabinetLight.h"
 #include <algorithm>
-#include "hardware/gpio.h"
 
 // Definition der statischen Instanz
 CabinetLight* CabinetLight::instance = nullptr;
@@ -99,7 +98,6 @@ void CabinetLight::setupSensors(uint8_t gpio) {
         lastTriggerTime[index] = get_absolute_time();
     }
 
-    /*
     // Registriere den GPIO-Interrupt für den Sensor
     // Dies ermöglicht es, auf Änderungen des GPIO-Pins zu reagieren
     gpio_set_irq_enabled_with_callback(
@@ -108,7 +106,7 @@ void CabinetLight::setupSensors(uint8_t gpio) {
         true,   // Aktiviere den Interrupt
         &CabinetLight::gpioCallback // Verwende die statische Callback-Funktion
     );
-    */
+
 }
 
 // Funktion zum Dimmen der LEDs

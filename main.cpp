@@ -1,4 +1,4 @@
-#include "cabinetLight.hpp"
+#include "cabinetLight.h"
 
 CabinetLight *cabinetLight = nullptr;
 

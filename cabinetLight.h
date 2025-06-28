@@ -1,13 +1,31 @@
+/**
+ * @file cabinetLight.h
+ * @brief Zentrale Klasse zur Steuerung der Schrankbeleuchtung.
+ *
+ * Kapselt die Ansteuerung von bis zu vier LED-Gruppen über MOSFETs und
+ * die Auswertung von Reedkontakten zur automatischen Schrankbeleuchtung.
+ * Die Klasse übernimmt Initialisierung, PWM-Dimmung und Interrupt-Handling.
+ *
+ * Features:
+ * - Bis zu 4 separat schaltbare LED-Gruppen
+ * - Automatische Steuerung über Magnetsensoren oder Reed-Schalter
+ * - Geringe Standby-Leistung durch Low-RDS(on)-MOSFETs
+ *
+ * @author Knut Welzel <knut.welzel@gmail.com>
+ * @date 2025-06-28
+ * @copyright MIT
+ */
+
 // Erstelle eine Classe für die CabinetLight
 // Diese Klasse soll die CabinetLight repräsentieren und deren Funktionen bereitstellen
 
-#ifndef CABINET_LIGHT_HPP
-#define CABINET_LIGHT_HPP
+#ifndef CABINET_LIGHT_H
+#define CABINET_LIGHT_H
 
-#include "pico/stdlib.h"
-#include "pico/time.h"
-#include "hardware/gpio.h"
-#include "hardware/pwm.h"
+#include "pico/stdlib.h"      // Für GPIO und Standardfunktionen
+#include "pico/time.h"        // Für Zeitfunktionen
+#include "hardware/gpio.h"    // Für GPIO-Hardwarezugriff
+#include "hardware/pwm.h"     // Für PWM-Hardwarezugriff
 #include <vector>
 
 /**
@@ -70,4 +88,4 @@ private:
     void handleGpioCallback(uint gpio, uint32_t events);
 };
 
-#endif // CABINET_LIGHT_HPP
+#endif // CABINET_LIGHT_H

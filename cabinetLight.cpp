@@ -1,11 +1,33 @@
+/**
+ * @file cabinetLight.cpp
+ * @brief Implementierung der Steuerlogik für die Schrankbeleuchtung.
+ *
+ * Realisiert die Initialisierung der Hardware, PWM-Dimmung der LEDs und
+ * das Interrupt-Handling für die Reedkontakte. Grundlage ist ein Raspberry Pi Pico W,
+ * der bis zu vier LED-Gruppen über MOSFETs schaltet und dimmt.
+ *
+ * Features:
+ * - Bis zu 4 separat schaltbare LED-Gruppen
+ * - Automatische Steuerung über Magnetsensoren oder Reed-Schalter
+ * - Geringe Standby-Leistung durch Low-RDS(on)-MOSFETs
+ *
+ * @author Knut Welzel <knut.welzel@gmail.com>
+ * @date 2025-06-28
+ * @copyright MIT
+ */
 
-#include "cabinetLight.h"
-#include <algorithm>
+#include "cabinetLight.h"   // Header-Datei der CabinetLight-Klasse
+#include <algorithm>    
 
 // Definition der statischen Instanz
 CabinetLight* CabinetLight::instance = nullptr;
 
+/**
+ * @brief Konstruktor der CabinetLight-Klasse
+ * Initialisiert die GPIO-Pins und PWM-Ausgänge für die LEDs
+ */ 
 CabinetLight::CabinetLight() {
+
     instance = this; // Singleton-Instanz setzen
 
     // Initialisiere die Standard-Ein/Ausgabe
@@ -109,7 +131,11 @@ void CabinetLight::setupSensors(uint8_t gpio) {
 
 }
 
-// Funktion zum Dimmen der LEDs
+/**
+ * @brief Dimmt die LED ein oder aus
+ * @param gpio GPIO-Pin für die LED
+ * @param on true, um die LED einzuschalten, false, um sie auszuschalten
+ */
 void CabinetLight::fadeLed(uint gpio, bool on) {
 
     // Überprüfe, ob der GPIO-Pin gültig ist
@@ -153,7 +179,12 @@ void CabinetLight::fadeLed(uint gpio, bool on) {
     }
 }
 
-// Statischer GPIO-Interrupt-Handler (leitet an Instanz weiter)
+
+/**
+ * @brief Statischer GPIO-Interrupt-Handler (leitet an Instanz weiter)
+ * @param gpio GPIO-Pin, der den Interrupt ausgelöst hat
+ * @param events Ereignisse, die den Interrupt ausgelöst haben
+ */
 void CabinetLight::gpioCallback(uint gpio, uint32_t events) {
     
     // Überprüfe, ob die Instanz existiert
@@ -164,7 +195,12 @@ void CabinetLight::gpioCallback(uint gpio, uint32_t events) {
     }
 }
 
-// Instanz-Handler für Reedkontakte
+
+/**
+ * @brief Verarbeitet den GPIO-Interrupt für die Sensoren
+ * @param gpio GPIO-Pin, der den Interrupt ausgelöst hat
+ * @param events Ereignisse, die den Interrupt ausgelöst haben
+ */
 void CabinetLight::handleGpioCallback(uint gpio, uint32_t events) {
 
     // Überprüfe, ob der GPIO-Pin gültig ist
@@ -205,9 +241,13 @@ void CabinetLight::handleGpioCallback(uint gpio, uint32_t events) {
                 // Setze den LED-Zustand auf wahr
                 ledState[i] = true;
             } 
+            // Wenn die Tür geschlossen ist und die LED leuchtet, dimme sie runter
             else if (!door_open && ledState[i]) {
             
+                // Dimme die LED runter
                 fadeLed(LED_PINS[i], false);
+                // Setze den LED-Zustand auf falsch
+                // Dies schaltet die LED aus
                 ledState[i] = false;
             }
         }

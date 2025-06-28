@@ -11,6 +11,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Ensure docs directory exists
+        run: mkdir -p ./docs
+
       - name: Install Doxygen
         run: sudo apt-get update && sudo apt-get install -y doxygen graphviz
 

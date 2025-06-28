@@ -1,9 +1,11 @@
 <map id="/home/runner/work/Schrankbeleuchtung&#45;RPiPico/Schrankbeleuchtung&#45;RPiPico/cabinetLight.cpp" name="/home/runner/work/Schrankbeleuchtung&#45;RPiPico/Schrankbeleuchtung&#45;RPiPico/cabinetLight.cpp">
-<area shape="rect" id="Node000001" title="Implementierung der Steuerlogik für die Schrankbeleuchtung." alt="" coords="234,5,515,60"/>
+<area shape="rect" id="Node000001" title="Implementierung der Steuerlogik für die Schrankbeleuchtung." alt="" coords="297,5,578,60"/>
 <area shape="rect" id="Node000002" href="$cabinetLight_8h.html" title="Zentrale Klasse zur Steuerung der Schrankbeleuchtung." alt="" coords="256,108,371,133"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="358,62,332,98,328,95,354,59"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="401,62,343,102,340,98,398,58"/>
 <area shape="rect" id="Node000008" title=" " alt="" coords="395,108,480,133"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="396,58,423,95,418,98,392,62"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="440,60,440,94,435,94,435,60"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="504,108,565,133"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="469,58,513,97,509,101,465,62"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="5,181,107,207"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="273,136,111,180,110,175,271,131"/>
 <area shape="rect" id="Node000004" title=" " alt="" coords="131,181,226,207"/>

@@ -8,14 +8,25 @@ jobs:
   doxygen:
     runs-on: ubuntu-latest
     steps:
-      - name: Ensure docs directory exists
-        run: mkdir -p ./docs
-
       - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Install Doxygen
         run: sudo apt-get update && sudo apt-get install -y doxygen graphviz
+
+      - name: Create Doxyfile
+        run: |
+          cat <<EOF > ./docs/Doxyfile
+          PROJECT_NAME = "Schrankbeleuchtung Firmware"
+          OUTPUT_DIRECTORY = ./html
+          INPUT = ../main.cpp ../cabinetLight.h ../cabinetLight.cpp
+          FILE_PATTERNS = *.cpp *.h
+          GENERATE_HTML = YES
+          GENERATE_LATEX = NO
+          EXTRACT_ALL = YES
+          MARKDOWN_SUPPORT = YES
+          USE_MDFILE_AS_MAINPAGE = ../README.md
+          EOF
 
       - name: Generate Doxygen documentation
         working-directory: ./docs

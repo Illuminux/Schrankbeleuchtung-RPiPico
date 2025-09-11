@@ -70,8 +70,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">/home/runner/work/Schrankbeleuchtung-RPiPico/Schrankbeleuchtung-RPiPico/main.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -79,50 +78,59 @@ $(function() {
 <p>Firmware-Einstiegspunkt für die automatisierte Schrankbeleuchtung.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="cabinetLight_8h_source.html">cabinetLight.h</a>&quot;</code><br />
+<code>#include &quot;hardware/irq.h&quot;</code><br />
 <code>#include &lt;cstdio&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for main.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="main_8cpp__incl.png" border="0" usemap="#a_2home_2runner_2work_2Schrankbeleuchtung-RPiPico_2Schrankbeleuchtung-RPiPico_2main_8cpp" alt=""/></div>
 <map name="a_2home_2runner_2work_2Schrankbeleuchtung-RPiPico_2Schrankbeleuchtung-RPiPico_2main_8cpp" id="a_2home_2runner_2work_2Schrankbeleuchtung-RPiPico_2Schrankbeleuchtung-RPiPico_2main_8cpp">
-<area shape="rect" title="Firmware&#45;Einstiegspunkt für die automatisierte Schrankbeleuchtung." alt="" coords="205,5,533,45"/>
-<area shape="rect" href="cabinetLight_8h.html" title="Zentrale Klasse zur Steuerung der Schrankbeleuchtung." alt="" coords="256,93,371,119"/>
-<area shape="poly" title=" " alt="" coords="358,47,332,84,327,80,354,44"/>
-<area shape="rect" title=" " alt="" coords="395,93,456,119"/>
-<area shape="poly" title=" " alt="" coords="385,44,411,80,407,84,381,47"/>
+<area shape="rect" title="Firmware&#45;Einstiegspunkt für die automatisierte Schrankbeleuchtung." alt="" coords="443,5,771,45"/>
+<area shape="rect" href="cabinetLight_8h.html" title="Zentrale Klasse zur Steuerung der Schrankbeleuchtung (Header)." alt="" coords="409,93,524,119"/>
+<area shape="poly" title=" " alt="" coords="574,48,501,89,498,84,572,43"/>
+<area shape="rect" title=" " alt="" coords="549,93,665,119"/>
+<area shape="poly" title=" " alt="" coords="609,46,609,79,604,79,604,46"/>
+<area shape="rect" title=" " alt="" coords="689,93,751,119"/>
+<area shape="poly" title=" " alt="" coords="636,43,693,83,690,87,633,48"/>
 <area shape="rect" title=" " alt="" coords="5,167,107,192"/>
-<area shape="poly" title=" " alt="" coords="273,121,111,166,110,160,271,116"/>
+<area shape="poly" title=" " alt="" coords="409,120,121,169,120,164,408,114"/>
 <area shape="rect" title=" " alt="" coords="131,167,226,192"/>
-<area shape="poly" title=" " alt="" coords="293,121,214,162,212,158,290,116"/>
+<area shape="poly" title=" " alt="" coords="421,121,239,166,238,161,420,116"/>
 <area shape="rect" title=" " alt="" coords="250,167,377,192"/>
-<area shape="poly" title=" " alt="" coords="316,119,316,153,311,153,311,119"/>
+<area shape="poly" title=" " alt="" coords="443,121,352,163,350,158,441,116"/>
 <area shape="rect" title=" " alt="" coords="401,167,532,192"/>
-<area shape="poly" title=" " alt="" coords="339,116,430,158,428,163,337,121"/>
-<area shape="rect" title=" " alt="" coords="557,167,619,192"/>
-<area shape="poly" title=" " alt="" coords="358,116,544,164,543,169,357,121"/>
+<area shape="poly" title=" " alt="" coords="469,119,469,153,464,153,464,119"/>
+<area shape="rect" title=" " alt="" coords="556,167,612,192"/>
+<area shape="poly" title=" " alt="" coords="487,116,554,157,552,162,484,121"/>
+<area shape="rect" title=" " alt="" coords="636,167,703,192"/>
+<area shape="poly" title=" " alt="" coords="500,116,625,160,623,165,498,121"/>
+<area shape="rect" title=" " alt="" coords="727,167,793,192"/>
+<area shape="poly" title=" " alt="" coords="515,116,714,164,712,169,514,121"/>
 </map>
 </div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4" id="r_ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> ()</td></tr>
-<tr class="memdesc:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hauptfunktion des Programms.  <br /></td></tr>
+<tr class="memdesc:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hauptfunktion: Initialisiert Hardware und steuert die Schrankbeleuchtung.  <br /></td></tr>
 <tr class="separator:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:aefe0ff27b4a303a90b3eaaa4b76f8078" id="r_aefe0ff27b4a303a90b3eaaa4b76f8078"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCabinetLight.html">CabinetLight</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#aefe0ff27b4a303a90b3eaaa4b76f8078">cabinetLight</a> = nullptr</td></tr>
-<tr class="separator:aefe0ff27b4a303a90b3eaaa4b76f8078"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Firmware-Einstiegspunkt für die automatisierte Schrankbeleuchtung. </p>
-<p>Automatisierte LED-Beleuchtung für Schränke mit bis zu vier LED-Gruppen, gesteuert über Reedkontakte und MOSFETs auf Basis eines Raspberry Pi Pico W. Die Firmware initialisiert die Hardware und verarbeitet Sensorereignisse, um die LEDs je nach Türzustand zu dimmen.</p>
+<p>Dieses Programm steuert bis zu vier LED-Gruppen in einem Schrank automatisch über Reedkontakte (Magnetsensoren) und MOSFETs mit einem Raspberry Pi Pico W. Die Firmware übernimmt die Initialisierung der Hardware, die Konfiguration der Sensoren und LEDs sowie die Verarbeitung von Sensorereignissen, um die LEDs abhängig vom Türzustand sanft ein- und auszublenden (PWM-Dimmung).</p>
 <p>Features:</p><ul>
-<li>Bis zu 4 separat schaltbare LED-Gruppen</li>
-<li>Automatische Steuerung über Magnetsensoren oder Reed-Schalter</li>
-<li>Versorgung mit 12 V DC, intern auf 5 V und 3.3 V geregelt</li>
-<li>Geringe Standby-Leistung durch Low-RDS(on)-MOSFETs</li>
-<li>Erweiterbare Anschlüsse über XH-Steckerleisten</li>
+<li>Bis zu 4 separat schaltbare LED-Gruppen (z. B. für mehrere Türen/Fächer)</li>
+<li>Automatische Steuerung über Reedkontakte (Magnetsensoren)</li>
+<li>PWM-Dimmung für sanftes Ein-/Ausschalten der LEDs</li>
+<li>Geringe Standby-Leistung durch effiziente MOSFETs</li>
+<li>Heartbeat-LED zur Laufzeitüberwachung</li>
+<li>Erweiterbare Hardware-Anschlüsse</li>
+</ul>
+<p>Hardware-Anforderungen:</p><ul>
+<li>Raspberry Pi Pico W</li>
+<li>12V DC Versorgung (intern auf 5V/3.3V geregelt)</li>
+<li>MOSFETs für LED-Schaltung</li>
+<li>Reedkontakte an den Türen</li>
 </ul>
 <dl class="section author"><dt>Author</dt><dd>Knut Welzel <a href="#" onclick="location.href='mai'+'lto:'+'knu'+'t.'+'wel'+'ze'+'l@g'+'ma'+'il.'+'co'+'m'; return false;">knut.<span class="obfuscator">.nosp@m.</span>welz<span class="obfuscator">.nosp@m.</span>el@gm<span class="obfuscator">.nosp@m.</span>ail.<span class="obfuscator">.nosp@m.</span>com</a> </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2025-06-28 </dd></dl>
@@ -143,24 +151,20 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Hauptfunktion des Programms. </p>
-<p>Initialisiert die CabinetLight-Instanz und startet die Endlosschleife. In dieser Schleife wird die Firmware im Leerlauf gehalten, bis ein Interrupt von einem Sensor ausgelöst wird.</p>
-<dl class="section return"><dt>Returns</dt><dd>int Rückgabewert des Programms (0 bei Erfolg) </dd></dl>
-
-</div>
-</div>
-<h2 class="groupheader">Variable Documentation</h2>
-<a id="aefe0ff27b4a303a90b3eaaa4b76f8078" name="aefe0ff27b4a303a90b3eaaa4b76f8078"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aefe0ff27b4a303a90b3eaaa4b76f8078">&#9670;&#160;</a></span>cabinetLight</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classCabinetLight.html">CabinetLight</a>* cabinetLight = nullptr</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p>Hauptfunktion: Initialisiert Hardware und steuert die Schrankbeleuchtung. </p>
+<ul>
+<li>Initialisiert USB-CDC für Debug-Ausgaben</li>
+<li>Führt einen Boot-Blink auf der Onboard-LED aus</li>
+<li>Aktiviert GPIO-Interrupts für die Sensoren</li>
+<li>Erstellt und konfiguriert die CabinetLight-Instanz</li>
+<li>Setzt die Sensor-Polarity (active-low)</li>
+<li>Führt einen Startup-Test der LEDs aus</li>
+<li>Startet die Hauptschleife mit periodischer Event-Verarbeitung und Heartbeat-LED</li>
+</ul>
+<dl class="section return"><dt>Returns</dt><dd>int Rückgabewert (0 bei Erfolg) </dd></dl>
+<p>&lt; Initialisiere USB-CDC für serielle Debug-Ausgaben</p>
+<p>&lt; Warte, damit der Host Zeit für USB-Enumeration hat</p>
+<p>&lt; Globale Instanz für die Steuerung</p>
 
 </div>
 </div>

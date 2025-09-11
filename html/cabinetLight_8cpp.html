@@ -69,51 +69,103 @@ $(function() {
 
 </div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">/home/runner/work/Schrankbeleuchtung-RPiPico/Schrankbeleuchtung-RPiPico/cabinetLight.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Implementierung der Steuerlogik für die Schrankbeleuchtung.  
+<p>Implementierung der Steuerlogik für die Schrankbeleuchtung (Raspberry Pi Pico).  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="cabinetLight_8h_source.html">cabinetLight.h</a>&quot;</code><br />
 <code>#include &lt;algorithm&gt;</code><br />
 <code>#include &lt;cstdio&gt;</code><br />
+<code>#include &quot;hardware/clocks.h&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for cabinetLight.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="cabinetLight_8cpp__incl.png" border="0" usemap="#a_2home_2runner_2work_2Schrankbeleuchtung-RPiPico_2Schrankbeleuchtung-RPiPico_2cabinetLight_8cpp" alt=""/></div>
 <map name="a_2home_2runner_2work_2Schrankbeleuchtung-RPiPico_2Schrankbeleuchtung-RPiPico_2cabinetLight_8cpp" id="a_2home_2runner_2work_2Schrankbeleuchtung-RPiPico_2Schrankbeleuchtung-RPiPico_2cabinetLight_8cpp">
-<area shape="rect" title="Implementierung der Steuerlogik für die Schrankbeleuchtung." alt="" coords="297,5,578,60"/>
-<area shape="rect" href="cabinetLight_8h.html" title="Zentrale Klasse zur Steuerung der Schrankbeleuchtung." alt="" coords="256,108,371,133"/>
-<area shape="poly" title=" " alt="" coords="401,62,343,102,340,98,398,58"/>
-<area shape="rect" title=" " alt="" coords="395,108,480,133"/>
-<area shape="poly" title=" " alt="" coords="440,60,440,94,435,94,435,60"/>
-<area shape="rect" title=" " alt="" coords="504,108,565,133"/>
-<area shape="poly" title=" " alt="" coords="469,58,513,97,509,101,465,62"/>
+<area shape="rect" title="Implementierung der Steuerlogik für die Schrankbeleuchtung (Raspberry Pi Pico)." alt="" coords="498,5,779,60"/>
+<area shape="rect" href="cabinetLight_8h.html" title="Zentrale Klasse zur Steuerung der Schrankbeleuchtung (Header)." alt="" coords="409,108,524,133"/>
+<area shape="poly" title=" " alt="" coords="587,62,503,104,501,99,585,58"/>
+<area shape="rect" title=" " alt="" coords="548,108,633,133"/>
+<area shape="poly" title=" " alt="" coords="626,61,606,97,602,95,622,59"/>
+<area shape="rect" title=" " alt="" coords="657,108,719,133"/>
+<area shape="poly" title=" " alt="" coords="656,59,677,95,672,97,651,61"/>
+<area shape="rect" title=" " alt="" coords="743,108,883,133"/>
+<area shape="poly" title=" " alt="" coords="693,58,779,100,777,104,691,62"/>
 <area shape="rect" title=" " alt="" coords="5,181,107,207"/>
-<area shape="poly" title=" " alt="" coords="273,136,111,180,110,175,271,131"/>
+<area shape="poly" title=" " alt="" coords="409,134,121,184,120,178,408,129"/>
 <area shape="rect" title=" " alt="" coords="131,181,226,207"/>
-<area shape="poly" title=" " alt="" coords="293,136,214,177,212,172,290,131"/>
+<area shape="poly" title=" " alt="" coords="421,136,239,181,238,175,420,131"/>
 <area shape="rect" title=" " alt="" coords="250,181,377,207"/>
-<area shape="poly" title=" " alt="" coords="316,134,316,168,311,168,311,134"/>
+<area shape="poly" title=" " alt="" coords="443,136,352,178,350,173,441,131"/>
 <area shape="rect" title=" " alt="" coords="401,181,532,207"/>
-<area shape="poly" title=" " alt="" coords="339,131,430,173,428,178,337,136"/>
-<area shape="rect" title=" " alt="" coords="557,181,619,207"/>
-<area shape="poly" title=" " alt="" coords="358,131,544,179,543,184,357,136"/>
+<area shape="poly" title=" " alt="" coords="469,134,469,168,464,168,464,134"/>
+<area shape="rect" title=" " alt="" coords="556,181,612,207"/>
+<area shape="poly" title=" " alt="" coords="487,131,554,172,552,176,484,136"/>
+<area shape="rect" title=" " alt="" coords="636,181,703,207"/>
+<area shape="poly" title=" " alt="" coords="500,131,625,174,623,179,498,136"/>
+<area shape="rect" title=" " alt="" coords="727,181,793,207"/>
+<area shape="poly" title=" " alt="" coords="515,131,714,178,712,184,514,136"/>
 </map>
 </div>
-</div><a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Implementierung der Steuerlogik für die Schrankbeleuchtung. </p>
-<p>Realisiert die Initialisierung der Hardware, PWM-Dimmung der LEDs und das Interrupt-Handling für die Reedkontakte. Grundlage ist ein Raspberry Pi Pico W, der bis zu vier LED-Gruppen über MOSFETs schaltet und dimmt.</p>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ab2e112aa784db1e41bdf01d91d1cd851" id="r_ab2e112aa784db1e41bdf01d91d1cd851"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cabinetLight_8cpp.html#ab2e112aa784db1e41bdf01d91d1cd851">cabinet_gpio_callback</a> (uint gpio, uint32_t events)</td></tr>
+<tr class="separator:ab2e112aa784db1e41bdf01d91d1cd851"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Implementierung der Steuerlogik für die Schrankbeleuchtung (Raspberry Pi Pico). </p>
+<p>Diese Datei enthält die vollständige Implementierung der Klasse <a class="el" href="classCabinetLight.html" title="Kapselt die Steuerung der Schrankbeleuchtung (bis zu 4 Kanäle).">CabinetLight</a> zur automatischen Steuerung von bis zu vier LED-Gruppen in Schränken oder Möbeln. Die Steuerung erfolgt über Reedkontakte (Magnetsensoren) und MOSFETs. Die LEDs werden per PWM sanft ein- und ausgeblendet. Die Klasse übernimmt die Initialisierung der Hardware, das Setup der PWM-Kanäle, die Konfiguration der Sensor-GPIOs sowie das Interrupt- und Event-Handling. Besonderheiten sind die flexible Pinbelegung, die Entprellung der Sensoren, ein Fading-Mechanismus und die Unterstützung von active-low/active-high-Sensorlogik.</p>
+<p>Architektur-Highlights:</p><ul>
+<li>Singleton-Pattern für IRQ-Callback-Weiterleitung</li>
+<li>Atomare Bitmasken für IRQ-sicheres Event-Handling</li>
+<li>Flexible API für Pin- und Polarity-Konfiguration</li>
+<li>Effiziente PWM-Dimmung mit konfigurierbarer Schrittweite und Frequenz</li>
+</ul>
 <p>Features:</p><ul>
-<li>Bis zu 4 separat schaltbare LED-Gruppen</li>
-<li>Automatische Steuerung über Magnetsensoren oder Reed-Schalter</li>
+<li>Bis zu 4 separat schaltbare und dimmbare LED-Gruppen</li>
+<li>Automatische Steuerung über Reedkontakte (Magnetsensoren)</li>
+<li>PWM-Dimmung für sanftes Licht (Fading)</li>
 <li>Geringe Standby-Leistung durch Low-RDS(on)-MOSFETs</li>
+<li>Entprellung und IRQ-Handling für zuverlässige Sensorerkennung</li>
 </ul>
 <dl class="section author"><dt>Author</dt><dd>Knut Welzel <a href="#" onclick="location.href='mai'+'lto:'+'knu'+'t.'+'wel'+'ze'+'l@g'+'ma'+'il.'+'co'+'m'; return false;">knut.<span class="obfuscator">.nosp@m.</span>welz<span class="obfuscator">.nosp@m.</span>el@gm<span class="obfuscator">.nosp@m.</span>ail.<span class="obfuscator">.nosp@m.</span>com</a> </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2025-06-28 </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>MIT </dd></dl>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="ab2e112aa784db1e41bdf01d91d1cd851" name="ab2e112aa784db1e41bdf01d91d1cd851"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2e112aa784db1e41bdf01d91d1cd851">&#9670;&#160;</a></span>cabinet_gpio_callback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cabinet_gpio_callback </td>
+          <td>(</td>
+          <td class="paramtype">uint&#160;</td>
+          <td class="paramname"><em>gpio</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>events</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8

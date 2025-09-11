@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['instance_0',['instance',['../classCabinetLight.html#a384b1934fb88dac063be455a381b1a4e',1,'CabinetLight']]]
+  ['fade_5fstep_0',['FADE_STEP',['../classCabinetLight.html#a87d16a132848af4b2313de724bda08b7',1,'CabinetLight']]],
+  ['fading_1',['fading',['../classCabinetLight.html#a229efe0f3c546dfd5bd1af9b47f93efa',1,'CabinetLight']]]
 ];

@@ -12,9 +12,24 @@ Automatisierte LED-Beleuchtung für Schränke, realisiert mit einem Raspberry Pi
 - Bis zu 4 separat schaltbare LED-Gruppen
 - Automatische Steuerung über Magnetsensoren oder Reed-Schalter
 - PWM-Dimmung für sanftes Ein- und Ausschalten der LEDs
+- Flexible Pinbelegung für LEDs und Sensoren (per Software konfigurierbar)
+- Sensor-Polarity (active-low/active-high) individuell einstellbar
+- IRQ-basierte Ereignisverarbeitung mit atomarer Bitmaske, Fallback auf Polling
 - Versorgung mit 12 V DC, intern auf 5 V und 3.3 V geregelt
 - Geringe Standby-Leistung durch Low-RDS(on)-MOSFETs
 - Erweiterbare Anschlüsse über XH-Steckerleisten
+
+---
+
+## ⚙️ Firmware-Architektur & Hinweise
+
+- **PWM-Frequenz:** 1 kHz (PWM_WRAP = 12500, 12 Bit Auflösung)
+- **Fading:** Dimmzeit von 0 auf 100 % ca. 125 ms (bei Standard-Setup)
+- **Sensor-GPIOs:** mit Pull-Down und Interrupt (kein Pull-Up!)
+- **Flexible API:** Pinbelegung und Sensor-Polarity zur Laufzeit änderbar
+- **IRQ-Handling:** Singleton-Pattern, atomare Bitmasken für sichere Event-Verarbeitung
+- **Polling-Fallback:** Falls IRQs verloren gehen, werden Sensoren regelmäßig gepollt
+- **Sanftes Dimmen:** LEDs werden beim Öffnen/Schließen der Tür sanft ein- und ausgeblendet
 
 ---
 
@@ -82,9 +97,10 @@ Die vollständige Stückliste sowie Schaltplan und Layout befinden sich im [Schr
 ## 🧠 Firmware-Hinweise
 
 - LED-GPIOs werden als PWM-Ausgänge initialisiert
-- Sensor-GPIOs mit Pull-Up und Interrupt/Debounce
+- Sensor-GPIOs mit Pull-Down und Interrupt/Debounce
 - Bei Türöffnung wird die zugehörige LED sanft hochgedimmt, beim Schließen heruntergedimmt
 - Die Steuerung erfolgt vollständig interruptbasiert für schnelle Reaktion und niedrigen Stromverbrauch
+- Flexible Anpassung der Pinbelegung und Sensorlogik per Software
 
 ---
 

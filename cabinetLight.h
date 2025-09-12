@@ -143,6 +143,26 @@ public:
      * @brief Konstruktor: Initialisiert GPIOs und PWM für alle Kanäle.
      */
     CabinetLight();
+    
+    /**
+     * @brief Gibt den Initialisierungsstatus zurück.
+     * true = erfolgreich, false = Fehler aufgetreten
+     */
+    bool isInitialized() const { return initialized; }
+
+    /**
+     * @brief Initialisiert die PWM für einen LED-Kanal. Prüft Pin-Gültigkeit.
+     * @param gpio GPIO-Pin für die LED
+     * @return true bei Erfolg, false bei Fehler
+     */
+    bool setupPwmLEDs(uint8_t gpio);
+
+    /**
+     * @brief Initialisiert die Sensor-GPIOs und IRQs für einen Kanal. Prüft Pin-Gültigkeit.
+     * @param gpio GPIO-Pin für den Sensor
+     * @return true bei Erfolg, false bei Fehler
+     */
+    bool setupSensors(uint8_t gpio);
 
     /**
      * @brief Statischer GPIO-Interrupt-Handler (leitet an Instanz weiter).
@@ -164,14 +184,24 @@ public:
      *
      * @param pins Neues Array mit DEV_COUNT GPIO-Pins für LEDs
      */
-    void setLedPins(const std::array<uint8_t, DEV_COUNT>& pins);
+    /**
+     * @brief Setzt die GPIO-Pins für die LED-Kanäle und reinitialisiert PWM. Prüft Pins.
+     * @param pins Neues Array mit DEV_COUNT GPIO-Pins für LEDs
+     * @return true bei Erfolg, false bei Fehler
+     */
+    bool setLedPins(const std::array<uint8_t, DEV_COUNT>& pins);
 
     /**
      * @brief Setzt die GPIO-Pins für die Sensoren und reinitialisiert IRQs.
      *
      * @param pins Neues Array mit DEV_COUNT GPIO-Pins für Sensoren
      */
-    void setSensorPins(const std::array<uint8_t, DEV_COUNT>& pins);
+    /**
+     * @brief Setzt die GPIO-Pins für die Sensoren und reinitialisiert IRQs. Prüft Pins.
+     * @param pins Neues Array mit DEV_COUNT GPIO-Pins für Sensoren
+     * @return true bei Erfolg, false bei Fehler
+     */
+    bool setSensorPins(const std::array<uint8_t, DEV_COUNT>& pins);
 
     /**
      * @brief Setzt die Polarity (active low/high) für jeden Sensor.
@@ -188,18 +218,9 @@ public:
 private:
 
     /**
-     * @brief Initialisiert die PWM für einen LED-Kanal.
-     *
-     * @param gpio GPIO-Pin für die LED
+     * @brief Interner Initialisierungsstatus
      */
-    void setupPwmLEDs(uint8_t gpio);
-
-    /**
-     * @brief Initialisiert die Sensor-GPIOs und IRQs für einen Kanal.
-     *
-     * @param gpio GPIO-Pin für den Sensor
-     */
-    void setupSensors(uint8_t gpio);
+    bool initialized = false;
 
     /**
      * @brief Dimmt die LED eines Kanals ein oder aus (Fading).

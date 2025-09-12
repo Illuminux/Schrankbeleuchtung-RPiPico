@@ -65,32 +65,42 @@ int main() {
     // Ermöglicht die Verarbeitung von Sensorereignissen über IRQs
     irq_set_enabled(IO_IRQ_BANK0, true);
 
+
     // === 4. CabinetLight-Instanz erstellen und konfigurieren ===
-    static CabinetLight cabinetLightInstance; ///< Globale Instanz für die Steuerung
+    static CabinetLight cabinetLightInstance;
     CabinetLight *cabinetLight = &cabinetLightInstance;
 
-    // === 5. Sensor-Polarity setzen ===
-    // Bei aktiver-low-Sensoren (geschlossen = 0V, offen = 3.3V)
+    // === 5. Initialisierungsstatus prüfen ===
+    if (!cabinetLight->isInitialized()) {
+        printf("[FATAL] Fehler bei der Initialisierung der CabinetLight-Hardware!\n");
+        while (true) {
+            // Fehleranzeige: Onboard-LED blinkt schnell
+            gpio_put(PICO_DEFAULT_LED_PIN, 1);
+            sleep_ms(100);
+            gpio_put(PICO_DEFAULT_LED_PIN, 0);
+            sleep_ms(100);
+        }
+    }
+
+    // === 6. Sensor-Polarity setzen ===
     std::array<bool, CabinetLight::DEV_COUNT> sensorPol = {true, true, true, true};
     cabinetLight->setSensorPolarity(sensorPol);
     printf("[TEST] Sensor polarity set to active-low (true for active-low)\n");
 
-    // === 6. Startup-Test: LEDs nacheinander blinken lassen ===
+    // === 7. Startup-Test: LEDs nacheinander blinken lassen ===
     cabinetLight->runStartupTest();
 
-    // === 7. Heartbeat-LED-Setup ===
+    // === 8. Heartbeat-LED-Setup ===
     // Die Onboard-LED blinkt alle 1s als Lebenszeichen
     absolute_time_t hb_last = get_absolute_time();
     bool hb_state = false;
 
-    // === 8. Hauptschleife ===
-    // Verarbeitet anstehende Events und steuert die LEDs je nach Sensorzustand
+    // === 9. Hauptschleife ===
     while (true) {
-        // --- 8.1. Verarbeite Sensor- und LED-Events ---
-        // Diese Methode prüft, ob ein Sensor ausgelöst wurde und dimmt die LEDs entsprechend
+        // --- 9.1. Verarbeite Sensor- und LED-Events ---
         cabinetLight->process();
 
-        // --- 8.2. Heartbeat-LED toggeln (alle 1s) ---
+        // --- 9.2. Heartbeat-LED toggeln (alle 1s) ---
         absolute_time_t now = get_absolute_time();
         if (absolute_time_diff_us(hb_last, now) > 1000 * 1000) {
             hb_last = now;
@@ -98,8 +108,7 @@ int main() {
             gpio_put(PICO_DEFAULT_LED_PIN, hb_state);
         }
 
-        // --- 8.3. CPU-Entlastung durch kurze Pause ---
-        // Reduziert die CPU-Last und sorgt für ein definiertes process()-Intervall
-        sleep_ms(50); // 50 ms Pause → process() wird 20x pro Sekunde aufgerufen
+        // --- 9.3. CPU-Entlastung durch kurze Pause ---
+        sleep_ms(50);
     }
 }

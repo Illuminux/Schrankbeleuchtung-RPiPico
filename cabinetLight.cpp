@@ -49,33 +49,48 @@ const std::array<uint8_t, CabinetLight::DEV_COUNT> CabinetLight::DEFAULT_SENSOR_
 // Konstruktor: Initialisiert alle Kanäle, Pins und Statusarrays
 CabinetLight::CabinetLight() {
     printf("[DEBUG] CabinetLight Konstruktor aufgerufen.\n");
-    // Singleton-Instanz setzen (wichtig für IRQ-Callback)
     instance = this;
-    // Default-Pinbelegung übernehmen
     ledPins = DEFAULT_LED_PINS;
     sensorPins = DEFAULT_SENSOR_PINS;
+    initialized = true;
     // PWM für alle LED-Pins initialisieren
-    for (uint8_t gpio : ledPins) setupPwmLEDs(gpio);
+    for (uint8_t gpio : ledPins) {
+        if (!setupPwmLEDs(gpio)) {
+            printf("[ERROR] PWM-Init fehlgeschlagen für GPIO %d\n", gpio);
+            initialized = false;
+        }
+    }
     // IRQ-Callback für den ersten Sensor-Pin global registrieren (SDK-Anforderung)
     gpio_set_irq_enabled_with_callback(sensorPins[0], GPIO_IRQ_EDGE_FALL | GPIO_IRQ_EDGE_RISE, true, cabinet_gpio_callback);
     // Sensor-GPIOs initialisieren (inkl. Pull-Down und IRQ)
-    for (uint8_t gpio : sensorPins) setupSensors(gpio);
-    // Statusarrays auf 0/false setzen
+    for (uint8_t gpio : sensorPins) {
+        if (!setupSensors(gpio)) {
+            printf("[ERROR] Sensor-Init fehlgeschlagen für GPIO %d\n", gpio);
+            initialized = false;
+        }
+    }
     currentLevel.fill(0);
     targetLevel.fill(0);
     fading.fill(false);
     ledState.fill(false);
     lastTriggerTime.fill({});
-    printf("[DEBUG] CabinetLight Konstruktor abgeschlossen.\n");
+    if (initialized) {
+        printf("[DEBUG] CabinetLight Konstruktor abgeschlossen.\n");
+    } else {
+        printf("[ERROR] CabinetLight Initialisierung unvollständig!\n");
+    }
 }
 
 // Initialisiert einen LED-Pin für PWM-Betrieb
-void CabinetLight::setupPwmLEDs(uint8_t gpio) {
+bool CabinetLight::setupPwmLEDs(uint8_t gpio) {
+    if (gpio > 29) {
+        printf("[ERROR] Ungültiger LED-GPIO: %d\n", gpio);
+        return false;
+    }
     printf("[DEBUG] setupPwmLEDs: Konfiguriere PWM für GPIO %d\n", gpio);
-    gpio_init(gpio); // Pin initialisieren
-    gpio_set_function(gpio, GPIO_FUNC_PWM); // Pin auf PWM-Funktion setzen
-    gpio_set_pulls(gpio, false, false); // Keine Pulls am Gate
-    // PWM-Konfiguration berechnen und anwenden
+    gpio_init(gpio);
+    gpio_set_function(gpio, GPIO_FUNC_PWM);
+    gpio_set_pulls(gpio, false, false);
     uint slice = pwm_gpio_to_slice_num(gpio);
     pwm_config config = pwm_get_default_config();
     float clk_hz = (float)clock_get_hz(clk_sys);
@@ -84,9 +99,8 @@ void CabinetLight::setupPwmLEDs(uint8_t gpio) {
     pwm_config_set_clkdiv(&config, clkdiv);
     pwm_config_set_wrap(&config, PWM_WRAP);
     pwm_init(slice, &config, true);
-    pwm_set_gpio_level(gpio, 0); // Start mit 0% Helligkeit
+    pwm_set_gpio_level(gpio, 0);
     pwm_set_enabled(slice, true);
-    // Status für diesen Kanal zurücksetzen
     auto it = std::find(ledPins.begin(), ledPins.end(), gpio);
     if (it != ledPins.end()) {
         size_t idx = std::distance(ledPins.begin(), it);
@@ -94,26 +108,29 @@ void CabinetLight::setupPwmLEDs(uint8_t gpio) {
         targetLevel[idx] = 0;
         fading[idx] = false;
     }
-    // LED kurz aufleuchten lassen (Verdrahtungstest)
     pwm_set_gpio_level(gpio, PWM_WRAP);
     sleep_ms(100);
     pwm_set_gpio_level(gpio, 0);
+    return true;
 }
 
 // Initialisiert einen Sensor-Pin als Eingang mit Pull-Down und IRQ
-void CabinetLight::setupSensors(uint8_t gpio) {
+bool CabinetLight::setupSensors(uint8_t gpio) {
+    if (gpio > 29) {
+        printf("[ERROR] Ungültiger Sensor-GPIO: %d\n", gpio);
+        return false;
+    }
     printf("[DEBUG] setupSensors: Konfiguriere Sensor GPIO %d\n", gpio);
-    gpio_init(gpio); // Pin initialisieren
-    gpio_set_dir(gpio, GPIO_IN); // als Eingang
-    gpio_pull_down(gpio); // interner Pull-Down aktivieren
-    // Triggerzeit für Entprellung setzen
+    gpio_init(gpio);
+    gpio_set_dir(gpio, GPIO_IN);
+    gpio_pull_down(gpio);
     auto it = std::find(sensorPins.begin(), sensorPins.end(), gpio);
     if (it != sensorPins.end()) {
         int index = std::distance(sensorPins.begin(), it);
         lastTriggerTime[index] = get_absolute_time();
     }
-    // IRQ-Callback für diesen Pin aktivieren
     gpio_set_irq_enabled_with_callback(gpio, GPIO_IRQ_EDGE_FALL | GPIO_IRQ_EDGE_RISE, true, cabinet_gpio_callback);
+    return true;
 }
 
 
@@ -220,26 +237,44 @@ void CabinetLight::process() {
 }
 
 // Setzt neue LED-Pins und initialisiert PWM für diese
-void CabinetLight::setLedPins(const std::array<uint8_t, DEV_COUNT>& pins) {
-    // Alte PWM-Slices deaktivieren
+bool CabinetLight::setLedPins(const std::array<uint8_t, DEV_COUNT>& pins) {
+    bool ok = true;
+    for (uint8_t g : pins) {
+        if (g > 29) {
+            printf("[ERROR] Ungültiger LED-Pin: %d\n", g);
+            ok = false;
+        }
+    }
+    if (!ok) return false;
     for (uint8_t g : ledPins) {
         uint slice = pwm_gpio_to_slice_num(g);
         pwm_set_enabled(slice, false);
     }
     ledPins = pins;
-    // Neue Pins initialisieren
-    for (uint8_t g : ledPins) setupPwmLEDs(g);
+    for (uint8_t g : ledPins) {
+        if (!setupPwmLEDs(g)) ok = false;
+    }
+    return ok;
 }
 
 // Setzt neue Sensor-Pins und initialisiert IRQs für diese
-void CabinetLight::setSensorPins(const std::array<uint8_t, DEV_COUNT>& pins) {
-    // IRQs für alte Pins deaktivieren
+bool CabinetLight::setSensorPins(const std::array<uint8_t, DEV_COUNT>& pins) {
+    bool ok = true;
+    for (uint8_t g : pins) {
+        if (g > 29) {
+            printf("[ERROR] Ungültiger Sensor-Pin: %d\n", g);
+            ok = false;
+        }
+    }
+    if (!ok) return false;
     for (uint8_t g : sensorPins) {
         gpio_set_irq_enabled(g, GPIO_IRQ_EDGE_FALL | GPIO_IRQ_EDGE_RISE, false);
     }
     sensorPins = pins;
-    // Neue Sensor-Pins initialisieren
-    for (uint8_t g : sensorPins) setupSensors(g);
+    for (uint8_t g : sensorPins) {
+        if (!setupSensors(g)) ok = false;
+    }
+    return ok;
 }
 
 // Setzt die Sensor-Polarity (active-low/active-high) für alle Kanäle

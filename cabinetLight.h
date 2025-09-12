@@ -108,32 +108,32 @@ public:
     /**
      * @brief Letzte Triggerzeit für jeden Sensor (für Entprellung).
      */
-    std::array<absolute_time_t, DEV_COUNT> lastTriggerTime{};
+    std::array<absolute_time_t, DEV_COUNT> lastTriggerTime = {};
 
     /**
      * @brief Aktueller Zustand der LEDs (an/aus).
      */
-    std::array<bool, DEV_COUNT> ledState{};
+    std::array<bool, DEV_COUNT> ledState = {};
 
     /**
      * @brief Aktuelle PWM-Level (0..PWM_WRAP) für jeden Kanal.
      */
-    std::array<uint16_t, DEV_COUNT> currentLevel{};
+    std::array<uint16_t, DEV_COUNT> currentLevel = {};
 
     /**
      * @brief Ziel-PWM-Level (0..PWM_WRAP) für jeden Kanal.
      */
-    std::array<uint16_t, DEV_COUNT> targetLevel{};
+    std::array<uint16_t, DEV_COUNT> targetLevel = {};
 
     /**
      * @brief Gibt an, ob ein Kanal gerade fadet (Dimmen aktiv).
      */
-    std::array<bool, DEV_COUNT> fading{};
+    std::array<bool, DEV_COUNT> fading = {};
 
     /**
      * @brief Letzter gelesener GPIO-Zustand (für Polling-Fallback).
      */
-    std::array<bool, DEV_COUNT> lastRawState{};
+    std::array<bool, DEV_COUNT> lastRawState = {};
 
     /**
      * @brief Bitmaske für anstehende Sensorereignisse (IRQ-sicher, atomar).

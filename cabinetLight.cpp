@@ -147,8 +147,11 @@ void CabinetLight::fadeLed(uint gpio, bool on) {
     auto it = std::find(ledPins.begin(), ledPins.end(), static_cast<uint8_t>(gpio));
     if (it == ledPins.end()) return;
     size_t idx = std::distance(ledPins.begin(), it);
-    targetLevel[idx] = on ? PWM_WRAP : 0; // Ziel: an = volle Helligkeit, aus = 0
-    fading[idx] = true; // Fading aktivieren
+    uint16_t newTarget = on ? PWM_WRAP : 0;
+    if (targetLevel[idx] != newTarget) {
+        targetLevel[idx] = newTarget;
+        fading[idx] = true; // Fading nur aktivieren, wenn sich das Ziellevel ändert
+    }
 }
 
 // Statischer IRQ-Handler: leitet an Instanz weiter

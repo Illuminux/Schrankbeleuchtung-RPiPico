@@ -51,7 +51,13 @@ public:
      * @brief Singleton-Instanz für statische Callback-Weiterleitung.
      * Wird intern für IRQ-Handler benötigt.
      */
-    static CabinetLight* instance;
+    static std::atomic<CabinetLight*> instance;
+    /**
+     * @brief Gibt die Singleton-Instanz threadsicher zurück (z.B. für IRQ-Handler).
+     */
+    static CabinetLight* getInstance() {
+        return instance.load(std::memory_order_acquire);
+    }
 
     /**
      * @brief Anzahl der unterstützten LED-/Sensor-Kanäle.

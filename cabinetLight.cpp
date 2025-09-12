@@ -40,7 +40,7 @@ void cabinet_gpio_callback(uint gpio, uint32_t events);
 #include "hardware/clocks.h"
 
 // Definition der statischen Instanz für Singleton-Pattern (IRQ-Weiterleitung)
-CabinetLight* CabinetLight::instance = nullptr;
+std::atomic<CabinetLight*> CabinetLight::instance = nullptr;
 
 // Standard-Pinbelegung für LEDs und Sensoren (kann zur Laufzeit geändert werden)
 const std::array<uint8_t, CabinetLight::DEV_COUNT> CabinetLight::DEFAULT_LED_PINS = {2, 3, 4, 5};
@@ -49,7 +49,7 @@ const std::array<uint8_t, CabinetLight::DEV_COUNT> CabinetLight::DEFAULT_SENSOR_
 // Konstruktor: Initialisiert alle Kanäle, Pins und Statusarrays
 CabinetLight::CabinetLight() {
     printf("[DEBUG] CabinetLight Konstruktor aufgerufen.\n");
-    instance = this;
+    instance.store(this, std::memory_order_release);
     ledPins = DEFAULT_LED_PINS;
     sensorPins = DEFAULT_SENSOR_PINS;
     initialized = true;
@@ -136,8 +136,9 @@ bool CabinetLight::setupSensors(uint8_t gpio) {
 
 // Freie Callback-Funktion für GPIO-Interrupts (leitet an Instanz weiter)
 void cabinet_gpio_callback(uint gpio, uint32_t events) {
-    if (CabinetLight::instance) {
-        CabinetLight::instance->gpioCallback(gpio, events);
+    CabinetLight* inst = CabinetLight::getInstance();
+    if (inst) {
+        inst->gpioCallback(gpio, events);
     }
 }
 
@@ -153,8 +154,9 @@ void CabinetLight::fadeLed(uint gpio, bool on) {
 // Statischer IRQ-Handler: leitet an Instanz weiter
 void CabinetLight::gpioCallback(uint gpio, uint32_t events) {
     printf("[DEBUG] gpioCallback: GPIO %d, events=0x%08x\n", gpio, events);
-    if (!instance) return;
-    instance->onGpioIrq(gpio);
+    CabinetLight* inst = getInstance();
+    if (!inst) return;
+    inst->onGpioIrq(gpio);
 }
 
 // IRQ-Event: Setzt das Pending-Bit für den betroffenen Sensor

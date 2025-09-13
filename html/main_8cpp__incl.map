@@ -1,23 +1,23 @@
 <map id="/home/runner/work/Schrankbeleuchtung&#45;RPiPico/Schrankbeleuchtung&#45;RPiPico/main.cpp" name="/home/runner/work/Schrankbeleuchtung&#45;RPiPico/Schrankbeleuchtung&#45;RPiPico/main.cpp">
-<area shape="rect" id="Node000001" title="Firmware&#45;Einstiegspunkt für die automatisierte Schrankbeleuchtung." alt="" coords="443,5,771,45"/>
-<area shape="rect" id="Node000002" href="$cabinetLight_8h.html" title="Zentrale Klasse zur Steuerung der Schrankbeleuchtung (Header)." alt="" coords="409,93,524,119"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="574,48,501,89,498,84,572,43"/>
-<area shape="rect" id="Node000010" title=" " alt="" coords="549,93,665,119"/>
-<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="609,46,609,79,604,79,604,46"/>
-<area shape="rect" id="Node000011" title=" " alt="" coords="689,93,751,119"/>
-<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="636,43,693,83,690,87,633,48"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="5,167,107,192"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="409,120,121,169,120,164,408,114"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="131,167,226,192"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="421,121,239,166,238,161,420,116"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="250,167,377,192"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="443,121,352,163,350,158,441,116"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="401,167,532,192"/>
-<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="469,119,469,153,464,153,464,119"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="556,167,612,192"/>
-<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="487,116,554,157,552,162,484,121"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="636,167,703,192"/>
-<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="500,116,625,160,623,165,498,121"/>
+<area shape="rect" id="Node000001" title="Einstiegspunkt der Firmware für die Schrankbeleuchtung (Raspberry Pi Pico W)" alt="" coords="325,5,653,45"/>
+<area shape="rect" id="Node000002" href="$cabinetLight_8h.html" title="Zentrale Steuerklasse für die Schrankbeleuchtung (Header)." alt="" coords="292,93,407,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="457,48,383,89,381,84,455,43"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="431,93,547,119"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="492,46,492,79,487,79,487,46"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="572,93,633,119"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="518,43,576,83,573,87,515,48"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,167,72,192"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="297,121,86,169,85,164,296,116"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="96,167,152,192"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="314,121,166,168,164,163,312,116"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="176,167,277,192"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="331,121,260,162,257,157,328,116"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="302,167,397,192"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="352,119,352,153,347,153,347,119"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="421,167,547,192"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="372,116,451,158,449,162,370,121"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="572,167,703,192"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="396,116,578,161,577,166,395,121"/>
 <area shape="rect" id="Node000009" title=" " alt="" coords="727,167,793,192"/>
-<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="515,116,714,164,712,169,514,121"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="407,114,713,164,713,169,407,119"/>
 </map>

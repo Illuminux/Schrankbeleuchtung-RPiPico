@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['lastrawstate_0',['lastRawState',['../classCabinetLight.html#a7ab35b86e37b2f50e7a15a9ed8d628cc',1,'CabinetLight']]],
-  ['lasttriggertime_1',['lastTriggerTime',['../classCabinetLight.html#a9ac78a7e0417cd6956711563ab330b47',1,'CabinetLight']]],
-  ['ledpins_2',['ledPins',['../classCabinetLight.html#a465b1280907a05319385f4db543508a1',1,'CabinetLight']]],
-  ['ledstate_3',['ledState',['../classCabinetLight.html#a0411752003211b79e49049566acec0bb',1,'CabinetLight']]]
+  ['getinstance_0',['getInstance',['../classCabinetLight.html#aa6bf3fcaac0641183bc73f3f1bad334b',1,'CabinetLight']]],
+  ['getloglevel_1',['getLogLevel',['../classCabinetLight.html#a7149d01fe452e13a5f7c1cdbaeefc52f',1,'CabinetLight']]],
+  ['getpollingfallback_2',['getPollingFallback',['../classCabinetLight.html#a1e5fc97d45e3a4c5f0279827b80efa1f',1,'CabinetLight']]],
+  ['gpiocallback_3',['gpioCallback',['../classCabinetLight.html#a1748359b48567c45ce75fedb6d676e65',1,'CabinetLight']]]
 ];

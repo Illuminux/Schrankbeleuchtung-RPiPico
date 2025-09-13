@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['pendingmask_0',['pendingMask',['../classCabinetLight.html#ae08d41de4d8313687a62b1de04f5ea9c',1,'CabinetLight']]],
-  ['pwm_5ffreq_5fhz_1',['PWM_FREQ_HZ',['../classCabinetLight.html#adc879c54fc5566ed079f75e46307072d',1,'CabinetLight']]],
-  ['pwm_5fwrap_2',['PWM_WRAP',['../classCabinetLight.html#adc35a7d8402c70404a4ca7a81584fb6e',1,'CabinetLight']]]
+  ['lastrawstate_0',['lastRawState',['../classCabinetLight.html#a7ab35b86e37b2f50e7a15a9ed8d628cc',1,'CabinetLight']]],
+  ['lasttriggertime_1',['lastTriggerTime',['../classCabinetLight.html#a9ac78a7e0417cd6956711563ab330b47',1,'CabinetLight']]],
+  ['ledpins_2',['ledPins',['../classCabinetLight.html#a465b1280907a05319385f4db543508a1',1,'CabinetLight']]],
+  ['ledstate_3',['ledState',['../classCabinetLight.html#a0411752003211b79e49049566acec0bb',1,'CabinetLight']]]
 ];

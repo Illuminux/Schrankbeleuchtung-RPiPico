@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['setledpins_0',['setLedPins',['../classCabinetLight.html#a0896b180bcca9eddeabb98ed682e2776',1,'CabinetLight']]],
-  ['setsensorpins_1',['setSensorPins',['../classCabinetLight.html#a653e34579b61723f63b6db090812f849',1,'CabinetLight']]],
-  ['setsensorpolarity_2',['setSensorPolarity',['../classCabinetLight.html#af638147069f5a50c4d9554ad51008e9b',1,'CabinetLight']]]
+  ['logdebug_0',['logDebug',['../classCabinetLight.html#a0439aee6b5229b098ff1d7cdc0c60117',1,'CabinetLight']]],
+  ['logerror_1',['logError',['../classCabinetLight.html#aacef300b97593c42bb787a84e4596b87',1,'CabinetLight']]],
+  ['loginfo_2',['logInfo',['../classCabinetLight.html#ac1abd50809b6ce198effb96e50cabcb3',1,'CabinetLight']]],
+  ['logwarn_3',['logWarn',['../classCabinetLight.html#a3e73ed68c9af3886cd07289ad987543d',1,'CabinetLight']]]
 ];

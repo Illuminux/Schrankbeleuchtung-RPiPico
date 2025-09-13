@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['pendingmask_0',['pendingMask',['../classCabinetLight.html#ae08d41de4d8313687a62b1de04f5ea9c',1,'CabinetLight']]],
-  ['process_1',['process',['../classCabinetLight.html#a3fabd7ab91b1bbb09c960eb79b1a9dee',1,'CabinetLight']]],
-  ['pwm_5ffreq_5fhz_2',['PWM_FREQ_HZ',['../classCabinetLight.html#adc879c54fc5566ed079f75e46307072d',1,'CabinetLight']]],
-  ['pwm_5fwrap_3',['PWM_WRAP',['../classCabinetLight.html#adc35a7d8402c70404a4ca7a81584fb6e',1,'CabinetLight']]]
+  ['info_0',['INFO',['../classCabinetLight.html#a533ddcc882fee35e976d78092ea8cf3da551b723eafd6a31d444fcb2f5920fbd3',1,'CabinetLight']]],
+  ['instance_1',['instance',['../classCabinetLight.html#afa7562cca0f1aadcaa1673748583c8f3',1,'CabinetLight']]],
+  ['isinitialized_2',['isInitialized',['../classCabinetLight.html#ac18bb1bdd2b8c6b381c4d0226e1b94d7',1,'CabinetLight']]]
 ];

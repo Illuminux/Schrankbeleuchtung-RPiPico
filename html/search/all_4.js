@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['instance_0',['instance',['../classCabinetLight.html#a384b1934fb88dac063be455a381b1a4e',1,'CabinetLight']]]
+  ['fade_5fstep_0',['FADE_STEP',['../classCabinetLight.html#a87d16a132848af4b2313de724bda08b7',1,'CabinetLight']]],
+  ['fading_1',['fading',['../classCabinetLight.html#a229efe0f3c546dfd5bd1af9b47f93efa',1,'CabinetLight']]],
+  ['fading_5fstep_5fms_2',['FADING_STEP_MS',['../classCabinetLight.html#aed7603619905d6618f2874ce581c114e',1,'CabinetLight']]],
+  ['fatalerrorblink_3',['fatalErrorBlink',['../classCabinetLight.html#a67f4572b46a058ccd4c397a6d5825e19',1,'CabinetLight']]]
 ];

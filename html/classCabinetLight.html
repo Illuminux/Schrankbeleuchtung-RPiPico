@@ -70,6 +70,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
@@ -83,42 +84,85 @@ $(function() {
  <a href="classCabinetLight.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="cabinetLight_8h_source.html">cabinetLight.h</a>&gt;</code></p>
-<div class="dynheader">
-Collaboration diagram for CabinetLight:</div>
-<div class="dyncontent">
-<div class="center"><img src="classCabinetLight__coll__graph.png" border="0" usemap="#aCabinetLight_coll__map" alt="Collaboration graph"/></div>
-<map name="aCabinetLight_coll__map" id="aCabinetLight_coll__map">
-<area shape="rect" title="Kapselt die Steuerung der Schrankbeleuchtung (bis zu 4 Kanäle)." alt="" coords="5,5,109,31"/>
-<area shape="poly" title=" " alt="" coords="124,12,136,18,110,25,109,20,131,18,122,17"/>
-</map>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a533ddcc882fee35e976d78092ea8cf3d" id="r_a533ddcc882fee35e976d78092ea8cf3d"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#a533ddcc882fee35e976d78092ea8cf3d">LogLevel</a> : uint8_t { <a class="el" href="classCabinetLight.html#a533ddcc882fee35e976d78092ea8cf3dabb1ca97ec761fc37101737ba0aa2e7c5">ERROR</a> = 0
+, <a class="el" href="classCabinetLight.html#a533ddcc882fee35e976d78092ea8cf3da32bd8a1db2275458673903bdb84cb277">WARN</a> = 1
+, <a class="el" href="classCabinetLight.html#a533ddcc882fee35e976d78092ea8cf3da551b723eafd6a31d444fcb2f5920fbd3">INFO</a> = 2
+, <a class="el" href="classCabinetLight.html#a533ddcc882fee35e976d78092ea8cf3dadc30ec20708ef7b0f641ef78b7880a15">DEBUG</a> = 3
+ }</td></tr>
+<tr class="memdesc:a533ddcc882fee35e976d78092ea8cf3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">LogLevel für die Logging-API.  <a href="classCabinetLight.html#a533ddcc882fee35e976d78092ea8cf3d">More...</a><br /></td></tr>
+<tr class="separator:a533ddcc882fee35e976d78092ea8cf3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:af29f59fd1cad23cacad441d8b27dbd87" id="r_af29f59fd1cad23cacad441d8b27dbd87"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#af29f59fd1cad23cacad441d8b27dbd87">CabinetLight</a> ()</td></tr>
 <tr class="memdesc:af29f59fd1cad23cacad441d8b27dbd87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Konstruktor: Initialisiert GPIOs und PWM für alle Kanäle.  <br /></td></tr>
 <tr class="separator:af29f59fd1cad23cacad441d8b27dbd87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac18bb1bdd2b8c6b381c4d0226e1b94d7" id="r_ac18bb1bdd2b8c6b381c4d0226e1b94d7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#ac18bb1bdd2b8c6b381c4d0226e1b94d7">isInitialized</a> () const</td></tr>
+<tr class="memdesc:ac18bb1bdd2b8c6b381c4d0226e1b94d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt den Initialisierungsstatus zurück.  <br /></td></tr>
+<tr class="separator:ac18bb1bdd2b8c6b381c4d0226e1b94d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7bd250a2a686a0ff4e82427205dd2e22" id="r_a7bd250a2a686a0ff4e82427205dd2e22"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#a7bd250a2a686a0ff4e82427205dd2e22">setupPwmLEDs</a> (uint8_t gpio)</td></tr>
+<tr class="memdesc:a7bd250a2a686a0ff4e82427205dd2e22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialisiert die PWM für einen LED-Kanal. Prüft Pin-Gültigkeit.  <br /></td></tr>
+<tr class="separator:a7bd250a2a686a0ff4e82427205dd2e22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1491026cd16d8628a4c0b5d2d9afb2f2" id="r_a1491026cd16d8628a4c0b5d2d9afb2f2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#a1491026cd16d8628a4c0b5d2d9afb2f2">setupSensors</a> (uint8_t gpio)</td></tr>
+<tr class="memdesc:a1491026cd16d8628a4c0b5d2d9afb2f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialisiert die Sensor-GPIOs und IRQs für einen Kanal. Prüft Pin-Gültigkeit.  <br /></td></tr>
+<tr class="separator:a1491026cd16d8628a4c0b5d2d9afb2f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3fabd7ab91b1bbb09c960eb79b1a9dee" id="r_a3fabd7ab91b1bbb09c960eb79b1a9dee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#a3fabd7ab91b1bbb09c960eb79b1a9dee">process</a> ()</td></tr>
 <tr class="memdesc:a3fabd7ab91b1bbb09c960eb79b1a9dee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verarbeitet anstehende Events (z. B. Sensoränderungen, Fading).  <br /></td></tr>
 <tr class="separator:a3fabd7ab91b1bbb09c960eb79b1a9dee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0896b180bcca9eddeabb98ed682e2776" id="r_a0896b180bcca9eddeabb98ed682e2776"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#a0896b180bcca9eddeabb98ed682e2776">setLedPins</a> (const std::array&lt; uint8_t, <a class="el" href="classCabinetLight.html#a7e0f9785a37fe003bec0d24651b4dcdb">DEV_COUNT</a> &gt; &amp;pins)</td></tr>
-<tr class="memdesc:a0896b180bcca9eddeabb98ed682e2776"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setzt die GPIO-Pins für die LED-Kanäle und reinitialisiert PWM.  <br /></td></tr>
-<tr class="separator:a0896b180bcca9eddeabb98ed682e2776"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a653e34579b61723f63b6db090812f849" id="r_a653e34579b61723f63b6db090812f849"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#a653e34579b61723f63b6db090812f849">setSensorPins</a> (const std::array&lt; uint8_t, <a class="el" href="classCabinetLight.html#a7e0f9785a37fe003bec0d24651b4dcdb">DEV_COUNT</a> &gt; &amp;pins)</td></tr>
-<tr class="memdesc:a653e34579b61723f63b6db090812f849"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setzt die GPIO-Pins für die Sensoren und reinitialisiert IRQs.  <br /></td></tr>
-<tr class="separator:a653e34579b61723f63b6db090812f849"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e98271d8f9103b7cad49b1178877089" id="r_a8e98271d8f9103b7cad49b1178877089"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#a8e98271d8f9103b7cad49b1178877089">setLedPins</a> (const std::array&lt; uint8_t, <a class="el" href="classCabinetLight.html#a7e0f9785a37fe003bec0d24651b4dcdb">DEV_COUNT</a> &gt; &amp;pins)</td></tr>
+<tr class="memdesc:a8e98271d8f9103b7cad49b1178877089"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setzt die GPIO-Pins für die LED-Kanäle und reinitialisiert PWM. Prüft Pins.  <br /></td></tr>
+<tr class="separator:a8e98271d8f9103b7cad49b1178877089"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0b7357fe797e351bae260f5476146b7" id="r_ad0b7357fe797e351bae260f5476146b7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#ad0b7357fe797e351bae260f5476146b7">setSensorPins</a> (const std::array&lt; uint8_t, <a class="el" href="classCabinetLight.html#a7e0f9785a37fe003bec0d24651b4dcdb">DEV_COUNT</a> &gt; &amp;pins)</td></tr>
+<tr class="memdesc:ad0b7357fe797e351bae260f5476146b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setzt die GPIO-Pins für die Sensoren und reinitialisiert IRQs. Prüft Pins.  <br /></td></tr>
+<tr class="separator:ad0b7357fe797e351bae260f5476146b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af638147069f5a50c4d9554ad51008e9b" id="r_af638147069f5a50c4d9554ad51008e9b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#af638147069f5a50c4d9554ad51008e9b">setSensorPolarity</a> (const std::array&lt; bool, <a class="el" href="classCabinetLight.html#a7e0f9785a37fe003bec0d24651b4dcdb">DEV_COUNT</a> &gt; &amp;polarity)</td></tr>
 <tr class="memdesc:af638147069f5a50c4d9554ad51008e9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setzt die Polarity (active low/high) für jeden Sensor.  <br /></td></tr>
 <tr class="separator:af638147069f5a50c4d9554ad51008e9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae564665d6df96eb34a36bd9420a9e102" id="r_ae564665d6df96eb34a36bd9420a9e102"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#ae564665d6df96eb34a36bd9420a9e102">runStartupTest</a> ()</td></tr>
 <tr class="memdesc:ae564665d6df96eb34a36bd9420a9e102"><td class="mdescLeft">&#160;</td><td class="mdescRight">Führt einen sichtbaren Startup-Test aus (alle LEDs blinken nacheinander).  <br /></td></tr>
 <tr class="separator:ae564665d6df96eb34a36bd9420a9e102"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb0ecee50abd734522197da33ae9e206" id="r_abb0ecee50abd734522197da33ae9e206"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#abb0ecee50abd734522197da33ae9e206">setPollingFallback</a> (bool enable)</td></tr>
+<tr class="memdesc:abb0ecee50abd734522197da33ae9e206"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aktiviert/deaktiviert das Polling-Fallback für Sensoren.  <br /></td></tr>
+<tr class="separator:abb0ecee50abd734522197da33ae9e206"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e5fc97d45e3a4c5f0279827b80efa1f" id="r_a1e5fc97d45e3a4c5f0279827b80efa1f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#a1e5fc97d45e3a4c5f0279827b80efa1f">getPollingFallback</a> () const</td></tr>
+<tr class="memdesc:a1e5fc97d45e3a4c5f0279827b80efa1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt zurück, ob das Polling-Fallback aktiv ist.  <br /></td></tr>
+<tr class="separator:a1e5fc97d45e3a4c5f0279827b80efa1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
+<tr class="memitem:aa6bf3fcaac0641183bc73f3f1bad334b" id="r_aa6bf3fcaac0641183bc73f3f1bad334b"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classCabinetLight.html">CabinetLight</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#aa6bf3fcaac0641183bc73f3f1bad334b">getInstance</a> ()</td></tr>
+<tr class="memdesc:aa6bf3fcaac0641183bc73f3f1bad334b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt die Singleton-Instanz threadsicher zurück (z.B. für IRQ-Handler).  <br /></td></tr>
+<tr class="separator:aa6bf3fcaac0641183bc73f3f1bad334b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3fbfc9df173278098c552cace44950fc" id="r_a3fbfc9df173278098c552cace44950fc"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#a3fbfc9df173278098c552cace44950fc">blinkOnboardLed</a> (int times, int on_ms, int off_ms)</td></tr>
+<tr class="memdesc:a3fbfc9df173278098c552cace44950fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lässt die Onboard-LED blinken (z.B. als Boot- oder Heartbeat-Anzeige).  <br /></td></tr>
+<tr class="separator:a3fbfc9df173278098c552cace44950fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67f4572b46a058ccd4c397a6d5825e19" id="r_a67f4572b46a058ccd4c397a6d5825e19"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#a67f4572b46a058ccd4c397a6d5825e19">fatalErrorBlink</a> ()</td></tr>
+<tr class="memdesc:a67f4572b46a058ccd4c397a6d5825e19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Endlosschleife für Fehleranzeige (Onboard-LED schnelles Blinken). @noreturn.  <br /></td></tr>
+<tr class="separator:a67f4572b46a058ccd4c397a6d5825e19"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1748359b48567c45ce75fedb6d676e65" id="r_a1748359b48567c45ce75fedb6d676e65"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#a1748359b48567c45ce75fedb6d676e65">gpioCallback</a> (uint gpio, uint32_t events)</td></tr>
 <tr class="memdesc:a1748359b48567c45ce75fedb6d676e65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Statischer GPIO-Interrupt-Handler (leitet an Instanz weiter).  <br /></td></tr>
 <tr class="separator:a1748359b48567c45ce75fedb6d676e65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a854192e6e54d24550fe6357ef5b2087d" id="r_a854192e6e54d24550fe6357ef5b2087d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#a854192e6e54d24550fe6357ef5b2087d">setLogLevel</a> (<a class="el" href="classCabinetLight.html#a533ddcc882fee35e976d78092ea8cf3d">LogLevel</a> level)</td></tr>
+<tr class="memdesc:a854192e6e54d24550fe6357ef5b2087d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setzt das globale LogLevel für die Logging-API.  <br /></td></tr>
+<tr class="separator:a854192e6e54d24550fe6357ef5b2087d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7149d01fe452e13a5f7c1cdbaeefc52f" id="r_a7149d01fe452e13a5f7c1cdbaeefc52f"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classCabinetLight.html#a533ddcc882fee35e976d78092ea8cf3d">LogLevel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#a7149d01fe452e13a5f7c1cdbaeefc52f">getLogLevel</a> ()</td></tr>
+<tr class="memdesc:a7149d01fe452e13a5f7c1cdbaeefc52f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt das aktuelle LogLevel zurück.  <br /></td></tr>
+<tr class="separator:a7149d01fe452e13a5f7c1cdbaeefc52f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacef300b97593c42bb787a84e4596b87" id="r_aacef300b97593c42bb787a84e4596b87"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#aacef300b97593c42bb787a84e4596b87">logError</a> (const char *fmt,...)</td></tr>
+<tr class="memdesc:aacef300b97593c42bb787a84e4596b87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt eine Fehlermeldung aus (LogLevel ERROR).  <br /></td></tr>
+<tr class="separator:aacef300b97593c42bb787a84e4596b87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e73ed68c9af3886cd07289ad987543d" id="r_a3e73ed68c9af3886cd07289ad987543d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#a3e73ed68c9af3886cd07289ad987543d">logWarn</a> (const char *fmt,...)</td></tr>
+<tr class="memdesc:a3e73ed68c9af3886cd07289ad987543d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt eine Warnung aus (LogLevel WARN).  <br /></td></tr>
+<tr class="separator:a3e73ed68c9af3886cd07289ad987543d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1abd50809b6ce198effb96e50cabcb3" id="r_ac1abd50809b6ce198effb96e50cabcb3"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#ac1abd50809b6ce198effb96e50cabcb3">logInfo</a> (const char *fmt,...)</td></tr>
+<tr class="memdesc:ac1abd50809b6ce198effb96e50cabcb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt eine Info-Meldung aus (LogLevel INFO).  <br /></td></tr>
+<tr class="separator:ac1abd50809b6ce198effb96e50cabcb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0439aee6b5229b098ff1d7cdc0c60117" id="r_a0439aee6b5229b098ff1d7cdc0c60117"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#a0439aee6b5229b098ff1d7cdc0c60117">logDebug</a> (const char *fmt,...)</td></tr>
+<tr class="memdesc:a0439aee6b5229b098ff1d7cdc0c60117"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt eine Debug-Meldung aus (LogLevel DEBUG).  <br /></td></tr>
+<tr class="separator:a0439aee6b5229b098ff1d7cdc0c60117"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -128,22 +172,22 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:aafa103bf981c44a5b12087f01a222aaa" id="r_aafa103bf981c44a5b12087f01a222aaa"><td class="memItemLeft" align="right" valign="top">std::array&lt; uint8_t, <a class="el" href="classCabinetLight.html#a7e0f9785a37fe003bec0d24651b4dcdb">DEV_COUNT</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#aafa103bf981c44a5b12087f01a222aaa">sensorPins</a> = <a class="el" href="classCabinetLight.html#a42a20d9f901c94e2e4c3ab87f4b837b5">DEFAULT_SENSOR_PINS</a></td></tr>
 <tr class="memdesc:aafa103bf981c44a5b12087f01a222aaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aktuelle GPIO-Pins für Sensoren (veränderbar zur Laufzeit).  <br /></td></tr>
 <tr class="separator:aafa103bf981c44a5b12087f01a222aaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ac78a7e0417cd6956711563ab330b47" id="r_a9ac78a7e0417cd6956711563ab330b47"><td class="memItemLeft" align="right" valign="top">std::array&lt; absolute_time_t, <a class="el" href="classCabinetLight.html#a7e0f9785a37fe003bec0d24651b4dcdb">DEV_COUNT</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#a9ac78a7e0417cd6956711563ab330b47">lastTriggerTime</a> {}</td></tr>
+<tr class="memitem:a9ac78a7e0417cd6956711563ab330b47" id="r_a9ac78a7e0417cd6956711563ab330b47"><td class="memItemLeft" align="right" valign="top">std::array&lt; absolute_time_t, <a class="el" href="classCabinetLight.html#a7e0f9785a37fe003bec0d24651b4dcdb">DEV_COUNT</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#a9ac78a7e0417cd6956711563ab330b47">lastTriggerTime</a> = {}</td></tr>
 <tr class="memdesc:a9ac78a7e0417cd6956711563ab330b47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Letzte Triggerzeit für jeden Sensor (für Entprellung).  <br /></td></tr>
 <tr class="separator:a9ac78a7e0417cd6956711563ab330b47"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0411752003211b79e49049566acec0bb" id="r_a0411752003211b79e49049566acec0bb"><td class="memItemLeft" align="right" valign="top">std::array&lt; bool, <a class="el" href="classCabinetLight.html#a7e0f9785a37fe003bec0d24651b4dcdb">DEV_COUNT</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#a0411752003211b79e49049566acec0bb">ledState</a> {}</td></tr>
+<tr class="memitem:a0411752003211b79e49049566acec0bb" id="r_a0411752003211b79e49049566acec0bb"><td class="memItemLeft" align="right" valign="top">std::array&lt; bool, <a class="el" href="classCabinetLight.html#a7e0f9785a37fe003bec0d24651b4dcdb">DEV_COUNT</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#a0411752003211b79e49049566acec0bb">ledState</a> = {}</td></tr>
 <tr class="memdesc:a0411752003211b79e49049566acec0bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aktueller Zustand der LEDs (an/aus).  <br /></td></tr>
 <tr class="separator:a0411752003211b79e49049566acec0bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c6daba6838c37d85558a9bfa4ae5773" id="r_a6c6daba6838c37d85558a9bfa4ae5773"><td class="memItemLeft" align="right" valign="top">std::array&lt; uint16_t, <a class="el" href="classCabinetLight.html#a7e0f9785a37fe003bec0d24651b4dcdb">DEV_COUNT</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#a6c6daba6838c37d85558a9bfa4ae5773">currentLevel</a> {}</td></tr>
+<tr class="memitem:a6c6daba6838c37d85558a9bfa4ae5773" id="r_a6c6daba6838c37d85558a9bfa4ae5773"><td class="memItemLeft" align="right" valign="top">std::array&lt; uint16_t, <a class="el" href="classCabinetLight.html#a7e0f9785a37fe003bec0d24651b4dcdb">DEV_COUNT</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#a6c6daba6838c37d85558a9bfa4ae5773">currentLevel</a> = {}</td></tr>
 <tr class="memdesc:a6c6daba6838c37d85558a9bfa4ae5773"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aktuelle PWM-Level (0..PWM_WRAP) für jeden Kanal.  <br /></td></tr>
 <tr class="separator:a6c6daba6838c37d85558a9bfa4ae5773"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47d10c6653688417cdc19f60ec1344a1" id="r_a47d10c6653688417cdc19f60ec1344a1"><td class="memItemLeft" align="right" valign="top">std::array&lt; uint16_t, <a class="el" href="classCabinetLight.html#a7e0f9785a37fe003bec0d24651b4dcdb">DEV_COUNT</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#a47d10c6653688417cdc19f60ec1344a1">targetLevel</a> {}</td></tr>
+<tr class="memitem:a47d10c6653688417cdc19f60ec1344a1" id="r_a47d10c6653688417cdc19f60ec1344a1"><td class="memItemLeft" align="right" valign="top">std::array&lt; uint16_t, <a class="el" href="classCabinetLight.html#a7e0f9785a37fe003bec0d24651b4dcdb">DEV_COUNT</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#a47d10c6653688417cdc19f60ec1344a1">targetLevel</a> = {}</td></tr>
 <tr class="memdesc:a47d10c6653688417cdc19f60ec1344a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ziel-PWM-Level (0..PWM_WRAP) für jeden Kanal.  <br /></td></tr>
 <tr class="separator:a47d10c6653688417cdc19f60ec1344a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a229efe0f3c546dfd5bd1af9b47f93efa" id="r_a229efe0f3c546dfd5bd1af9b47f93efa"><td class="memItemLeft" align="right" valign="top">std::array&lt; bool, <a class="el" href="classCabinetLight.html#a7e0f9785a37fe003bec0d24651b4dcdb">DEV_COUNT</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#a229efe0f3c546dfd5bd1af9b47f93efa">fading</a> {}</td></tr>
+<tr class="memitem:a229efe0f3c546dfd5bd1af9b47f93efa" id="r_a229efe0f3c546dfd5bd1af9b47f93efa"><td class="memItemLeft" align="right" valign="top">std::array&lt; bool, <a class="el" href="classCabinetLight.html#a7e0f9785a37fe003bec0d24651b4dcdb">DEV_COUNT</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#a229efe0f3c546dfd5bd1af9b47f93efa">fading</a> = {}</td></tr>
 <tr class="memdesc:a229efe0f3c546dfd5bd1af9b47f93efa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt an, ob ein Kanal gerade fadet (Dimmen aktiv).  <br /></td></tr>
 <tr class="separator:a229efe0f3c546dfd5bd1af9b47f93efa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ab35b86e37b2f50e7a15a9ed8d628cc" id="r_a7ab35b86e37b2f50e7a15a9ed8d628cc"><td class="memItemLeft" align="right" valign="top">std::array&lt; bool, <a class="el" href="classCabinetLight.html#a7e0f9785a37fe003bec0d24651b4dcdb">DEV_COUNT</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#a7ab35b86e37b2f50e7a15a9ed8d628cc">lastRawState</a> {}</td></tr>
+<tr class="memitem:a7ab35b86e37b2f50e7a15a9ed8d628cc" id="r_a7ab35b86e37b2f50e7a15a9ed8d628cc"><td class="memItemLeft" align="right" valign="top">std::array&lt; bool, <a class="el" href="classCabinetLight.html#a7e0f9785a37fe003bec0d24651b4dcdb">DEV_COUNT</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#a7ab35b86e37b2f50e7a15a9ed8d628cc">lastRawState</a> = {}</td></tr>
 <tr class="memdesc:a7ab35b86e37b2f50e7a15a9ed8d628cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Letzter gelesener GPIO-Zustand (für Polling-Fallback).  <br /></td></tr>
 <tr class="separator:a7ab35b86e37b2f50e7a15a9ed8d628cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae08d41de4d8313687a62b1de04f5ea9c" id="r_ae08d41de4d8313687a62b1de04f5ea9c"><td class="memItemLeft" align="right" valign="top">std::atomic&lt; uint8_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#ae08d41de4d8313687a62b1de04f5ea9c">pendingMask</a> {0}</td></tr>
@@ -155,9 +199,9 @@ Public Attributes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr class="memitem:a384b1934fb88dac063be455a381b1a4e" id="r_a384b1934fb88dac063be455a381b1a4e"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classCabinetLight.html">CabinetLight</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#a384b1934fb88dac063be455a381b1a4e">instance</a> = nullptr</td></tr>
-<tr class="memdesc:a384b1934fb88dac063be455a381b1a4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Singleton-Instanz für statische Callback-Weiterleitung. Wird intern für IRQ-Handler benötigt.  <br /></td></tr>
-<tr class="separator:a384b1934fb88dac063be455a381b1a4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa7562cca0f1aadcaa1673748583c8f3" id="r_afa7562cca0f1aadcaa1673748583c8f3"><td class="memItemLeft" align="right" valign="top">static std::atomic&lt; <a class="el" href="classCabinetLight.html">CabinetLight</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#afa7562cca0f1aadcaa1673748583c8f3">instance</a> = nullptr</td></tr>
+<tr class="memdesc:afa7562cca0f1aadcaa1673748583c8f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Singleton-Instanz für statische Callback-Weiterleitung (z.B. IRQ-Handler).  <br /></td></tr>
+<tr class="separator:afa7562cca0f1aadcaa1673748583c8f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e0f9785a37fe003bec0d24651b4dcdb" id="r_a7e0f9785a37fe003bec0d24651b4dcdb"><td class="memItemLeft" align="right" valign="top">static constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#a7e0f9785a37fe003bec0d24651b4dcdb">DEV_COUNT</a> = 4</td></tr>
 <tr class="memdesc:a7e0f9785a37fe003bec0d24651b4dcdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Anzahl der unterstützten LED-/Sensor-Kanäle.  <br /></td></tr>
 <tr class="separator:a7e0f9785a37fe003bec0d24651b4dcdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -173,6 +217,20 @@ Static Public Attributes</h2></td></tr>
 <tr class="memitem:a87d16a132848af4b2313de724bda08b7" id="r_a87d16a132848af4b2313de724bda08b7"><td class="memItemLeft" align="right" valign="top">static constexpr uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#a87d16a132848af4b2313de724bda08b7">FADE_STEP</a> = 1000</td></tr>
 <tr class="memdesc:a87d16a132848af4b2313de724bda08b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Schrittweite für das Dimmen pro <a class="el" href="classCabinetLight.html#a3fabd7ab91b1bbb09c960eb79b1a9dee" title="Verarbeitet anstehende Events (z. B. Sensoränderungen, Fading).">process()</a>-Aufruf.  <br /></td></tr>
 <tr class="separator:a87d16a132848af4b2313de724bda08b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af67fef168ad573ca37dab9d998e41389" id="r_af67fef168ad573ca37dab9d998e41389"><td class="memItemLeft" align="right" valign="top">static constexpr uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#af67fef168ad573ca37dab9d998e41389">HEARTBEAT_INTERVAL_MS</a> = 1000</td></tr>
+<tr class="memdesc:af67fef168ad573ca37dab9d998e41389"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard-Intervall für das Heartbeat-Blinken (Millisekunden)  <br /></td></tr>
+<tr class="separator:af67fef168ad573ca37dab9d998e41389"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed7603619905d6618f2874ce581c114e" id="r_aed7603619905d6618f2874ce581c114e"><td class="memItemLeft" align="right" valign="top">static constexpr uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#aed7603619905d6618f2874ce581c114e">FADING_STEP_MS</a> = 50</td></tr>
+<tr class="memdesc:aed7603619905d6618f2874ce581c114e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard-Intervall für Fading-Schritte (Millisekunden)  <br /></td></tr>
+<tr class="separator:aed7603619905d6618f2874ce581c114e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12326d33d82f359de811547e345ab1c4" id="r_a12326d33d82f359de811547e345ab1c4"><td class="memItemLeft" align="right" valign="top">static constexpr uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#a12326d33d82f359de811547e345ab1c4">STARTUP_LED_ON_MS</a> = 300</td></tr>
+<tr class="memdesc:a12326d33d82f359de811547e345ab1c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verzögerung für LED-Test beim Start (Millisekunden)  <br /></td></tr>
+<tr class="separator:a12326d33d82f359de811547e345ab1c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0bbcc57bc627b644c558a9150ad3fac" id="r_ae0bbcc57bc627b644c558a9150ad3fac"><td class="memItemLeft" align="right" valign="top">static constexpr uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#ae0bbcc57bc627b644c558a9150ad3fac">STARTUP_LED_OFF_MS</a> = 50</td></tr>
+<tr class="separator:ae0bbcc57bc627b644c558a9150ad3fac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af096b5df88625b44fab0a18f7d39530e" id="r_af096b5df88625b44fab0a18f7d39530e"><td class="memItemLeft" align="right" valign="top">static constexpr uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#af096b5df88625b44fab0a18f7d39530e">PWM_TEST_DELAY_MS</a> = 100</td></tr>
+<tr class="memdesc:af096b5df88625b44fab0a18f7d39530e"><td class="mdescLeft">&#160;</td><td class="mdescRight">PWM-Test-Delay (Millisekunden)  <br /></td></tr>
+<tr class="separator:af096b5df88625b44fab0a18f7d39530e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ba047ae035cca841b4a5494ff44d966" id="r_a9ba047ae035cca841b4a5494ff44d966"><td class="memItemLeft" align="right" valign="top">static const std::array&lt; uint8_t, <a class="el" href="classCabinetLight.html#a7e0f9785a37fe003bec0d24651b4dcdb">DEV_COUNT</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCabinetLight.html#a9ba047ae035cca841b4a5494ff44d966">DEFAULT_LED_PINS</a> = {2, 3, 4, 5}</td></tr>
 <tr class="memdesc:a9ba047ae035cca841b4a5494ff44d966"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default-GPIO-Pins für die LEDs (Definition in .cpp).  <br /></td></tr>
 <tr class="separator:a9ba047ae035cca841b4a5494ff44d966"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -182,8 +240,43 @@ Static Public Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Kapselt die Steuerung der Schrankbeleuchtung (bis zu 4 Kanäle). </p>
-<p>Diese Klasse übernimmt die Initialisierung, PWM-Dimmung, Sensorabfrage und das Event-Handling für bis zu vier LED-Gruppen. Sie ist für den Einsatz auf dem Raspberry Pi Pico (W) optimiert und unterstützt flexible Pinbelegung sowie verschiedene Sensor-Polarity-Einstellungen. </p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<p>Diese Klasse übernimmt die Initialisierung, PWM-Dimmung, Sensorabfrage und das Event-Handling für bis zu vier LED-Gruppen. Sie ist für den Einsatz auf dem Raspberry Pi Pico (W) optimiert und unterstützt flexible Pinbelegung sowie verschiedene Sensor-Polarity-Einstellungen.</p>
+<dl class="section note"><dt>Note</dt><dd>Thread-Sicherheit: Die Klasse ist grundsätzlich nicht für parallele Zugriffe aus mehreren Threads ausgelegt, mit Ausnahme der explizit als thread-safe dokumentierten statischen Methoden und Member (z.B. Singleton-Instanz, pendingMask). IRQ-Handler und Hauptschleife können sicher zusammenarbeiten, solange alle Zugriffe auf atomare Member (z.B. pendingMask) erfolgen. Methoden wie <a class="el" href="classCabinetLight.html#a3fabd7ab91b1bbb09c960eb79b1a9dee" title="Verarbeitet anstehende Events (z. B. Sensoränderungen, Fading).">process()</a>, <a class="el" href="classCabinetLight.html#a8e98271d8f9103b7cad49b1178877089" title="Setzt die GPIO-Pins für die LED-Kanäle und reinitialisiert PWM. Prüft Pins.">setLedPins()</a>, <a class="el" href="classCabinetLight.html#ad0b7357fe797e351bae260f5476146b7" title="Setzt die GPIO-Pins für die Sensoren und reinitialisiert IRQs. Prüft Pins.">setSensorPins()</a> etc. dürfen nicht gleichzeitig aus mehreren Threads aufgerufen werden.</dd>
+<dd>
+Die Klasse ist als Singleton ausgelegt, um IRQ-Handler und Event-Weiterleitung zu ermöglichen. </dd></dl>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
+<a id="a533ddcc882fee35e976d78092ea8cf3d" name="a533ddcc882fee35e976d78092ea8cf3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a533ddcc882fee35e976d78092ea8cf3d">&#9670;&#160;</a></span>LogLevel</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="classCabinetLight.html#a533ddcc882fee35e976d78092ea8cf3d">CabinetLight::LogLevel</a> : uint8_t</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>LogLevel für die Logging-API. </p>
+<p>ERROR: Nur Fehler WARN: Fehler und Warnungen INFO: Fehler, Warnungen, Info DEBUG: Alle Meldungen </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a533ddcc882fee35e976d78092ea8cf3dabb1ca97ec761fc37101737ba0aa2e7c5" name="a533ddcc882fee35e976d78092ea8cf3dabb1ca97ec761fc37101737ba0aa2e7c5"></a>ERROR&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a533ddcc882fee35e976d78092ea8cf3da32bd8a1db2275458673903bdb84cb277" name="a533ddcc882fee35e976d78092ea8cf3da32bd8a1db2275458673903bdb84cb277"></a>WARN&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a533ddcc882fee35e976d78092ea8cf3da551b723eafd6a31d444fcb2f5920fbd3" name="a533ddcc882fee35e976d78092ea8cf3da551b723eafd6a31d444fcb2f5920fbd3"></a>INFO&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a533ddcc882fee35e976d78092ea8cf3dadc30ec20708ef7b0f641ef78b7880a15" name="a533ddcc882fee35e976d78092ea8cf3dadc30ec20708ef7b0f641ef78b7880a15"></a>DEBUG&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="af29f59fd1cad23cacad441d8b27dbd87" name="af29f59fd1cad23cacad441d8b27dbd87"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af29f59fd1cad23cacad441d8b27dbd87">&#9670;&#160;</a></span>CabinetLight()</h2>
 
@@ -200,10 +293,178 @@ Static Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Konstruktor: Initialisiert GPIOs und PWM für alle Kanäle. </p>
+<p>Führt die Initialisierung der Hardware durch. Nach dem Konstruktor sollte <a class="el" href="classCabinetLight.html#ac18bb1bdd2b8c6b381c4d0226e1b94d7" title="Gibt den Initialisierungsstatus zurück.">isInitialized()</a> geprüft werden. </p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a3fbfc9df173278098c552cace44950fc" name="a3fbfc9df173278098c552cace44950fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3fbfc9df173278098c552cace44950fc">&#9670;&#160;</a></span>blinkOnboardLed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CabinetLight::blinkOnboardLed </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>times</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>on_ms</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>off_ms</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lässt die Onboard-LED blinken (z.B. als Boot- oder Heartbeat-Anzeige). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">times</td><td>Anzahl der Blinkzyklen </td></tr>
+    <tr><td class="paramname">on_ms</td><td>Dauer LED an (ms) </td></tr>
+    <tr><td class="paramname">off_ms</td><td>Dauer LED aus (ms)</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Lässt die Onboard-LED blinken (z.B. als Boot- oder Heartbeat-Anzeige).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">times</td><td>Anzahl der Blinkzyklen </td></tr>
+    <tr><td class="paramname">on_ms</td><td>Dauer LED an (ms) </td></tr>
+    <tr><td class="paramname">off_ms</td><td>Dauer LED aus (ms)</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Diese Methode kann genutzt werden, um einen Boot- oder Fehlerstatus optisch anzuzeigen. </p>
+
+</div>
+</div>
+<a id="a67f4572b46a058ccd4c397a6d5825e19" name="a67f4572b46a058ccd4c397a6d5825e19"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67f4572b46a058ccd4c397a6d5825e19">&#9670;&#160;</a></span>fatalErrorBlink()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CabinetLight::fatalErrorBlink </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Endlosschleife für Fehleranzeige (Onboard-LED schnelles Blinken). @noreturn. </p>
+<p>Endlosschleife für Fehleranzeige (Onboard-LED schnelles Blinken).</p>
+<p>Wird bei fatalen Fehlern aufgerufen und signalisiert dauerhaft einen Fehlerzustand. @noreturn </p>
+
+</div>
+</div>
+<a id="aa6bf3fcaac0641183bc73f3f1bad334b" name="aa6bf3fcaac0641183bc73f3f1bad334b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6bf3fcaac0641183bc73f3f1bad334b">&#9670;&#160;</a></span>getInstance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="classCabinetLight.html">CabinetLight</a> * CabinetLight::getInstance </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gibt die Singleton-Instanz threadsicher zurück (z.B. für IRQ-Handler). </p>
+<p>@threadsafe </p><dl class="section return"><dt>Returns</dt><dd>Zeiger auf die aktuelle CabinetLight-Instanz </dd></dl>
+
+</div>
+</div>
+<a id="a7149d01fe452e13a5f7c1cdbaeefc52f" name="a7149d01fe452e13a5f7c1cdbaeefc52f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7149d01fe452e13a5f7c1cdbaeefc52f">&#9670;&#160;</a></span>getLogLevel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCabinetLight.html#a533ddcc882fee35e976d78092ea8cf3d">CabinetLight::LogLevel</a> CabinetLight::getLogLevel </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gibt das aktuelle LogLevel zurück. </p>
+<dl class="section return"><dt>Returns</dt><dd>Aktuelles LogLevel </dd></dl>
+
+</div>
+</div>
+<a id="a1e5fc97d45e3a4c5f0279827b80efa1f" name="a1e5fc97d45e3a4c5f0279827b80efa1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e5fc97d45e3a4c5f0279827b80efa1f">&#9670;&#160;</a></span>getPollingFallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CabinetLight::getPollingFallback </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gibt zurück, ob das Polling-Fallback aktiv ist. </p>
+<dl class="section return"><dt>Returns</dt><dd>true = Polling aktiv, false = nur IRQ </dd></dl>
+
+</div>
+</div>
 <a id="a1748359b48567c45ce75fedb6d676e65" name="a1748359b48567c45ce75fedb6d676e65"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1748359b48567c45ce75fedb6d676e65">&#9670;&#160;</a></span>gpioCallback()</h2>
 
@@ -242,7 +503,217 @@ Static Public Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">gpio</td><td>GPIO-Pin, der den Interrupt ausgelöst hat </td></tr>
-    <tr><td class="paramname">events</td><td>Ereignisse, die den Interrupt ausgelöst haben </td></tr>
+    <tr><td class="paramname">events</td><td>Ereignisse, die den Interrupt ausgelöst haben</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Wird von der Pico-IRQ-API aufgerufen und leitet an die Instanz weiter. </p>
+
+</div>
+</div>
+<a id="ac18bb1bdd2b8c6b381c4d0226e1b94d7" name="ac18bb1bdd2b8c6b381c4d0226e1b94d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac18bb1bdd2b8c6b381c4d0226e1b94d7">&#9670;&#160;</a></span>isInitialized()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CabinetLight::isInitialized </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gibt den Initialisierungsstatus zurück. </p>
+<dl class="section return"><dt>Returns</dt><dd>true = erfolgreich, false = Fehler aufgetreten</dd></dl>
+<p>Sollte nach dem Konstruktor geprüft werden, um Hardwarefehler zu erkennen. </p>
+
+</div>
+</div>
+<a id="a0439aee6b5229b098ff1d7cdc0c60117" name="a0439aee6b5229b098ff1d7cdc0c60117"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0439aee6b5229b098ff1d7cdc0c60117">&#9670;&#160;</a></span>logDebug()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CabinetLight::logDebug </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>fmt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gibt eine Debug-Meldung aus (LogLevel DEBUG). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fmt</td><td>Formatstring (wie printf) </td></tr>
+    <tr><td class="paramname">...</td><td>Argumente </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aacef300b97593c42bb787a84e4596b87" name="aacef300b97593c42bb787a84e4596b87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aacef300b97593c42bb787a84e4596b87">&#9670;&#160;</a></span>logError()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CabinetLight::logError </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>fmt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gibt eine Fehlermeldung aus (LogLevel ERROR). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fmt</td><td>Formatstring (wie printf) </td></tr>
+    <tr><td class="paramname">...</td><td>Argumente </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac1abd50809b6ce198effb96e50cabcb3" name="ac1abd50809b6ce198effb96e50cabcb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1abd50809b6ce198effb96e50cabcb3">&#9670;&#160;</a></span>logInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CabinetLight::logInfo </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>fmt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gibt eine Info-Meldung aus (LogLevel INFO). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fmt</td><td>Formatstring (wie printf) </td></tr>
+    <tr><td class="paramname">...</td><td>Argumente </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3e73ed68c9af3886cd07289ad987543d" name="a3e73ed68c9af3886cd07289ad987543d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e73ed68c9af3886cd07289ad987543d">&#9670;&#160;</a></span>logWarn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CabinetLight::logWarn </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>fmt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gibt eine Warnung aus (LogLevel WARN). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fmt</td><td>Formatstring (wie printf) </td></tr>
+    <tr><td class="paramname">...</td><td>Argumente </td></tr>
   </table>
   </dd>
 </dl>
@@ -265,7 +736,8 @@ Static Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Verarbeitet anstehende Events (z. B. Sensoränderungen, Fading). </p>
-<p>Diese Methode sollte regelmäßig in der Hauptschleife aufgerufen werden. </p>
+<dl class="section warning"><dt>Warning</dt><dd>Nicht thread-safe! Darf nur aus einem Thread (z.B. der Mainloop) aufgerufen werden.</dd></dl>
+<p>Diese Methode sollte regelmäßig in der Hauptschleife aufgerufen werden, um Sensor- und LED-Events zu verarbeiten. </p>
 
 </div>
 </div>
@@ -285,17 +757,19 @@ Static Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Führt einen sichtbaren Startup-Test aus (alle LEDs blinken nacheinander). </p>
+<dl class="section warning"><dt>Warning</dt><dd>Nicht thread-safe! Darf nicht parallel zu anderen Methoden aufgerufen werden.</dd></dl>
+<p>Kann zur Funktionsprüfung beim Start verwendet werden. </p>
 
 </div>
 </div>
-<a id="a0896b180bcca9eddeabb98ed682e2776" name="a0896b180bcca9eddeabb98ed682e2776"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0896b180bcca9eddeabb98ed682e2776">&#9670;&#160;</a></span>setLedPins()</h2>
+<a id="a8e98271d8f9103b7cad49b1178877089" name="a8e98271d8f9103b7cad49b1178877089"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e98271d8f9103b7cad49b1178877089">&#9670;&#160;</a></span>setLedPins()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void CabinetLight::setLedPins </td>
+          <td class="memname">bool CabinetLight::setLedPins </td>
           <td>(</td>
           <td class="paramtype">const std::array&lt; uint8_t, <a class="el" href="classCabinetLight.html#a7e0f9785a37fe003bec0d24651b4dcdb">DEV_COUNT</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>pins</em></td><td>)</td>
@@ -304,24 +778,88 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Setzt die GPIO-Pins für die LED-Kanäle und reinitialisiert PWM. </p>
+<p>Setzt die GPIO-Pins für die LED-Kanäle und reinitialisiert PWM. Prüft Pins. </p>
+<dl class="section warning"><dt>Warning</dt><dd>Nicht thread-safe! Darf nicht parallel zu anderen Methoden aufgerufen werden. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pins</td><td>Neues Array mit DEV_COUNT GPIO-Pins für LEDs </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>true bei Erfolg, false bei Fehler</dd></dl>
+<p>Kann zur Laufzeit aufgerufen werden, um die Pinbelegung zu ändern. </p>
 
 </div>
 </div>
-<a id="a653e34579b61723f63b6db090812f849" name="a653e34579b61723f63b6db090812f849"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a653e34579b61723f63b6db090812f849">&#9670;&#160;</a></span>setSensorPins()</h2>
+<a id="a854192e6e54d24550fe6357ef5b2087d" name="a854192e6e54d24550fe6357ef5b2087d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a854192e6e54d24550fe6357ef5b2087d">&#9670;&#160;</a></span>setLogLevel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CabinetLight::setLogLevel </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCabinetLight.html#a533ddcc882fee35e976d78092ea8cf3d">LogLevel</a>&#160;</td>
+          <td class="paramname"><em>level</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Setzt das globale LogLevel für die Logging-API. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">level</td><td>Neues LogLevel </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="abb0ecee50abd734522197da33ae9e206" name="abb0ecee50abd734522197da33ae9e206"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb0ecee50abd734522197da33ae9e206">&#9670;&#160;</a></span>setPollingFallback()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void CabinetLight::setSensorPins </td>
+          <td class="memname">void CabinetLight::setPollingFallback </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enable</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Aktiviert/deaktiviert das Polling-Fallback für Sensoren. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">enable</td><td>true = Polling aktivieren, false = nur IRQ</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Standard ist false (nur IRQ). Polling kann als Fallback genutzt werden, falls IRQ nicht zuverlässig funktioniert. </p>
+
+</div>
+</div>
+<a id="ad0b7357fe797e351bae260f5476146b7" name="ad0b7357fe797e351bae260f5476146b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0b7357fe797e351bae260f5476146b7">&#9670;&#160;</a></span>setSensorPins()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CabinetLight::setSensorPins </td>
           <td>(</td>
           <td class="paramtype">const std::array&lt; uint8_t, <a class="el" href="classCabinetLight.html#a7e0f9785a37fe003bec0d24651b4dcdb">DEV_COUNT</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>pins</em></td><td>)</td>
@@ -330,13 +868,16 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Setzt die GPIO-Pins für die Sensoren und reinitialisiert IRQs. </p>
+<p>Setzt die GPIO-Pins für die Sensoren und reinitialisiert IRQs. Prüft Pins. </p>
+<dl class="section warning"><dt>Warning</dt><dd>Nicht thread-safe! Darf nicht parallel zu anderen Methoden aufgerufen werden. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pins</td><td>Neues Array mit DEV_COUNT GPIO-Pins für Sensoren </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>true bei Erfolg, false bei Fehler</dd></dl>
+<p>Kann zur Laufzeit aufgerufen werden, um die Pinbelegung zu ändern. </p>
 
 </div>
 </div>
@@ -357,12 +898,70 @@ Static Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Setzt die Polarity (active low/high) für jeden Sensor. </p>
+<dl class="section warning"><dt>Warning</dt><dd>Nicht thread-safe! Darf nicht parallel zu anderen Methoden aufgerufen werden. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">polarity</td><td>Array mit true=active-low, false=active-high </td></tr>
+    <tr><td class="paramname">polarity</td><td>Array mit true=active-low, false=active-high</td></tr>
   </table>
   </dd>
 </dl>
+<p>Ermöglicht die Anpassung an verschiedene Sensorlogiken. </p>
+
+</div>
+</div>
+<a id="a7bd250a2a686a0ff4e82427205dd2e22" name="a7bd250a2a686a0ff4e82427205dd2e22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7bd250a2a686a0ff4e82427205dd2e22">&#9670;&#160;</a></span>setupPwmLEDs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CabinetLight::setupPwmLEDs </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>gpio</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialisiert die PWM für einen LED-Kanal. Prüft Pin-Gültigkeit. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gpio</td><td>GPIO-Pin für die LED </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true bei Erfolg, false bei Fehler</dd></dl>
+<p>Diese Methode wird intern beim Setzen der Pins verwendet. </p>
+
+</div>
+</div>
+<a id="a1491026cd16d8628a4c0b5d2d9afb2f2" name="a1491026cd16d8628a4c0b5d2d9afb2f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1491026cd16d8628a4c0b5d2d9afb2f2">&#9670;&#160;</a></span>setupSensors()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CabinetLight::setupSensors </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>gpio</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialisiert die Sensor-GPIOs und IRQs für einen Kanal. Prüft Pin-Gültigkeit. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gpio</td><td>GPIO-Pin für den Sensor </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true bei Erfolg, false bei Fehler</dd></dl>
+<p>Diese Methode wird intern beim Setzen der Pins verwendet. </p>
 
 </div>
 </div>
@@ -374,7 +973,7 @@ Static Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::array&lt;uint16_t, <a class="el" href="classCabinetLight.html#a7e0f9785a37fe003bec0d24651b4dcdb">DEV_COUNT</a>&gt; CabinetLight::currentLevel {}</td>
+          <td class="memname">std::array&lt;uint16_t, <a class="el" href="classCabinetLight.html#a7e0f9785a37fe003bec0d24651b4dcdb">DEV_COUNT</a>&gt; CabinetLight::currentLevel = {}</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -404,6 +1003,8 @@ Static Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Entprellzeit für Sensoren in Millisekunden. </p>
+<p>Entprellzeit für Sensoren in Millisekunden (Standard: 100 ms).</p>
+<p>Verhindert Mehrfachauslösung durch Prellen der Reedkontakte. </p>
 
 </div>
 </div>
@@ -428,6 +1029,8 @@ Static Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Default-GPIO-Pins für die LEDs (Definition in .cpp). </p>
+<p>Default-GPIO-Pins für die LEDs (Definition in .cpp).</p>
+<p>Diese Pins werden verwendet, wenn keine eigenen Pins gesetzt werden. </p>
 
 </div>
 </div>
@@ -476,6 +1079,8 @@ Static Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Anzahl der unterstützten LED-/Sensor-Kanäle. </p>
+<p>Anzahl der unterstützten LED-/Sensor-Kanäle (maximal 4).</p>
+<p>Die Klasse unterstützt bis zu vier unabhängige Kanäle für LEDs und Sensoren. </p>
 
 </div>
 </div>
@@ -500,6 +1105,7 @@ Static Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Schrittweite für das Dimmen pro <a class="el" href="classCabinetLight.html#a3fabd7ab91b1bbb09c960eb79b1a9dee" title="Verarbeitet anstehende Events (z. B. Sensoränderungen, Fading).">process()</a>-Aufruf. </p>
+<p>Schrittweite für das Dimmen pro <a class="el" href="classCabinetLight.html#a3fabd7ab91b1bbb09c960eb79b1a9dee" title="Verarbeitet anstehende Events (z. B. Sensoränderungen, Fading).">process()</a>-Aufruf (PWM-Level pro Schritt). </p>
 
 </div>
 </div>
@@ -510,7 +1116,7 @@ Static Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::array&lt;bool, <a class="el" href="classCabinetLight.html#a7e0f9785a37fe003bec0d24651b4dcdb">DEV_COUNT</a>&gt; CabinetLight::fading {}</td>
+          <td class="memname">std::array&lt;bool, <a class="el" href="classCabinetLight.html#a7e0f9785a37fe003bec0d24651b4dcdb">DEV_COUNT</a>&gt; CabinetLight::fading = {}</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -519,8 +1125,8 @@ Static Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a384b1934fb88dac063be455a381b1a4e" name="a384b1934fb88dac063be455a381b1a4e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a384b1934fb88dac063be455a381b1a4e">&#9670;&#160;</a></span>instance</h2>
+<a id="aed7603619905d6618f2874ce581c114e" name="aed7603619905d6618f2874ce581c114e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed7603619905d6618f2874ce581c114e">&#9670;&#160;</a></span>FADING_STEP_MS</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -529,7 +1135,58 @@ Static Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classCabinetLight.html">CabinetLight</a> * CabinetLight::instance = nullptr</td>
+          <td class="memname">constexpr uint32_t CabinetLight::FADING_STEP_MS = 50</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Standard-Intervall für Fading-Schritte (Millisekunden) </p>
+<p>Standard-Intervall für Fading-Schritte (Millisekunden). </p>
+
+</div>
+</div>
+<a id="af67fef168ad573ca37dab9d998e41389" name="af67fef168ad573ca37dab9d998e41389"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af67fef168ad573ca37dab9d998e41389">&#9670;&#160;</a></span>HEARTBEAT_INTERVAL_MS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint32_t CabinetLight::HEARTBEAT_INTERVAL_MS = 1000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Standard-Intervall für das Heartbeat-Blinken (Millisekunden) </p>
+<p>Standard-Intervall für das Heartbeat-Blinken (Millisekunden).</p>
+<p>Gibt an, wie oft die Heartbeat-LED im Normalbetrieb blinkt. </p>
+
+</div>
+</div>
+<a id="afa7562cca0f1aadcaa1673748583c8f3" name="afa7562cca0f1aadcaa1673748583c8f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa7562cca0f1aadcaa1673748583c8f3">&#9670;&#160;</a></span>instance</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::atomic&lt; <a class="el" href="classCabinetLight.html">CabinetLight</a> * &gt; CabinetLight::instance = nullptr</td>
         </tr>
       </table>
   </td>
@@ -539,7 +1196,9 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Singleton-Instanz für statische Callback-Weiterleitung. Wird intern für IRQ-Handler benötigt. </p>
+<p>Singleton-Instanz für statische Callback-Weiterleitung (z.B. IRQ-Handler). </p>
+<p>@threadsafe</p>
+<p>Zugriff auf diese Instanz ist threadsicher durch std::atomic. </p>
 
 </div>
 </div>
@@ -550,7 +1209,7 @@ Static Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::array&lt;bool, <a class="el" href="classCabinetLight.html#a7e0f9785a37fe003bec0d24651b4dcdb">DEV_COUNT</a>&gt; CabinetLight::lastRawState {}</td>
+          <td class="memname">std::array&lt;bool, <a class="el" href="classCabinetLight.html#a7e0f9785a37fe003bec0d24651b4dcdb">DEV_COUNT</a>&gt; CabinetLight::lastRawState = {}</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -566,12 +1225,13 @@ Static Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::array&lt;absolute_time_t, <a class="el" href="classCabinetLight.html#a7e0f9785a37fe003bec0d24651b4dcdb">DEV_COUNT</a>&gt; CabinetLight::lastTriggerTime {}</td>
+          <td class="memname">std::array&lt;absolute_time_t, <a class="el" href="classCabinetLight.html#a7e0f9785a37fe003bec0d24651b4dcdb">DEV_COUNT</a>&gt; CabinetLight::lastTriggerTime = {}</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Letzte Triggerzeit für jeden Sensor (für Entprellung). </p>
+<p>Wird intern zur Entprellung der Reedkontakte verwendet. </p>
 
 </div>
 </div>
@@ -588,6 +1248,7 @@ Static Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Aktuelle GPIO-Pins für LEDs (veränderbar zur Laufzeit). </p>
+<p>Kann über <a class="el" href="classCabinetLight.html#a8e98271d8f9103b7cad49b1178877089" title="Setzt die GPIO-Pins für die LED-Kanäle und reinitialisiert PWM. Prüft Pins.">setLedPins()</a> geändert werden. </p>
 
 </div>
 </div>
@@ -598,12 +1259,13 @@ Static Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::array&lt;bool, <a class="el" href="classCabinetLight.html#a7e0f9785a37fe003bec0d24651b4dcdb">DEV_COUNT</a>&gt; CabinetLight::ledState {}</td>
+          <td class="memname">std::array&lt;bool, <a class="el" href="classCabinetLight.html#a7e0f9785a37fe003bec0d24651b4dcdb">DEV_COUNT</a>&gt; CabinetLight::ledState = {}</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Aktueller Zustand der LEDs (an/aus). </p>
+<p>true = LED an, false = LED aus </p>
 
 </div>
 </div>
@@ -620,6 +1282,8 @@ Static Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Bitmaske für anstehende Sensorereignisse (IRQ-sicher, atomar). </p>
+<p>@threadsafe</p>
+<p>Zugriff auf dieses Feld ist threadsicher (std::atomic). Wird für die Kommunikation zwischen IRQ und Hauptschleife verwendet. </p>
 
 </div>
 </div>
@@ -644,6 +1308,32 @@ Static Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>PWM-Frequenz in Hz. </p>
+<p>PWM-Frequenz in Hz (Standard: 1000 Hz). </p>
+
+</div>
+</div>
+<a id="af096b5df88625b44fab0a18f7d39530e" name="af096b5df88625b44fab0a18f7d39530e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af096b5df88625b44fab0a18f7d39530e">&#9670;&#160;</a></span>PWM_TEST_DELAY_MS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint32_t CabinetLight::PWM_TEST_DELAY_MS = 100</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>PWM-Test-Delay (Millisekunden) </p>
+<p>PWM-Test-Delay (Millisekunden). </p>
 
 </div>
 </div>
@@ -668,6 +1358,8 @@ Static Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>PWM-Auflösung (TOP-Wert für PWM). 12500 entspricht ca. 12 Bit bei 1 kHz. </p>
+<p>PWM-Auflösung (TOP-Wert für PWM).</p>
+<p>12500 entspricht ca. 12 Bit bei 1 kHz PWM-Frequenz. </p>
 
 </div>
 </div>
@@ -684,6 +1376,7 @@ Static Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Sensor-Polarity: true = active-low (Standard: Pull-down). </p>
+<p>Kann über <a class="el" href="classCabinetLight.html#af638147069f5a50c4d9554ad51008e9b" title="Setzt die Polarity (active low/high) für jeden Sensor.">setSensorPolarity()</a> angepasst werden. </p>
 
 </div>
 </div>
@@ -700,6 +1393,55 @@ Static Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Aktuelle GPIO-Pins für Sensoren (veränderbar zur Laufzeit). </p>
+<p>Kann über <a class="el" href="classCabinetLight.html#ad0b7357fe797e351bae260f5476146b7" title="Setzt die GPIO-Pins für die Sensoren und reinitialisiert IRQs. Prüft Pins.">setSensorPins()</a> geändert werden. </p>
+
+</div>
+</div>
+<a id="ae0bbcc57bc627b644c558a9150ad3fac" name="ae0bbcc57bc627b644c558a9150ad3fac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0bbcc57bc627b644c558a9150ad3fac">&#9670;&#160;</a></span>STARTUP_LED_OFF_MS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint32_t CabinetLight::STARTUP_LED_OFF_MS = 50</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a12326d33d82f359de811547e345ab1c4" name="a12326d33d82f359de811547e345ab1c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12326d33d82f359de811547e345ab1c4">&#9670;&#160;</a></span>STARTUP_LED_ON_MS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint32_t CabinetLight::STARTUP_LED_ON_MS = 300</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Verzögerung für LED-Test beim Start (Millisekunden) </p>
+<p>Verzögerung für LED-Test beim Start (Millisekunden).</p>
+<p>Gibt die An- und Aus-Dauer für den Startup-Test der LEDs an. </p>
 
 </div>
 </div>
@@ -710,12 +1452,13 @@ Static Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::array&lt;uint16_t, <a class="el" href="classCabinetLight.html#a7e0f9785a37fe003bec0d24651b4dcdb">DEV_COUNT</a>&gt; CabinetLight::targetLevel {}</td>
+          <td class="memname">std::array&lt;uint16_t, <a class="el" href="classCabinetLight.html#a7e0f9785a37fe003bec0d24651b4dcdb">DEV_COUNT</a>&gt; CabinetLight::targetLevel = {}</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Ziel-PWM-Level (0..PWM_WRAP) für jeden Kanal. </p>
+<p>Wird für sanftes Fading verwendet. </p>
 
 </div>
 </div>

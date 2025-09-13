@@ -75,35 +75,35 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Zentrale Klasse zur Steuerung der Schrankbeleuchtung (Header).  
+<p>Zentrale Steuerklasse für die Schrankbeleuchtung (Header).  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;pico/stdlib.h&quot;</code><br />
+<div class="textblock"><code>#include &lt;cstdint&gt;</code><br />
+<code>#include &lt;array&gt;</code><br />
+<code>#include &quot;pico/stdlib.h&quot;</code><br />
 <code>#include &quot;pico/time.h&quot;</code><br />
 <code>#include &quot;hardware/gpio.h&quot;</code><br />
 <code>#include &quot;hardware/pwm.h&quot;</code><br />
-<code>#include &lt;array&gt;</code><br />
-<code>#include &lt;cstdint&gt;</code><br />
 <code>#include &lt;atomic&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for cabinetLight.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="cabinetLight_8h__incl.png" border="0" usemap="#a_2home_2runner_2work_2Schrankbeleuchtung-RPiPico_2Schrankbeleuchtung-RPiPico_2cabinetLight_8h" alt=""/></div>
 <map name="a_2home_2runner_2work_2Schrankbeleuchtung-RPiPico_2Schrankbeleuchtung-RPiPico_2cabinetLight_8h" id="a_2home_2runner_2work_2Schrankbeleuchtung-RPiPico_2Schrankbeleuchtung-RPiPico_2cabinetLight_8h">
-<area shape="rect" title="Zentrale Klasse zur Steuerung der Schrankbeleuchtung (Header)." alt="" coords="326,5,607,60"/>
-<area shape="rect" title=" " alt="" coords="5,108,107,133"/>
-<area shape="poly" title=" " alt="" coords="342,63,121,109,120,103,341,57"/>
-<area shape="rect" title=" " alt="" coords="131,108,226,133"/>
-<area shape="poly" title=" " alt="" coords="379,63,231,107,229,102,378,58"/>
-<area shape="rect" title=" " alt="" coords="250,108,377,133"/>
-<area shape="poly" title=" " alt="" coords="421,62,347,104,344,99,419,58"/>
-<area shape="rect" title=" " alt="" coords="401,108,532,133"/>
-<area shape="poly" title=" " alt="" coords="469,60,469,94,464,94,464,60"/>
-<area shape="rect" title=" " alt="" coords="556,108,612,133"/>
-<area shape="poly" title=" " alt="" coords="504,58,559,98,556,102,501,62"/>
-<area shape="rect" title=" " alt="" coords="636,108,703,133"/>
-<area shape="poly" title=" " alt="" coords="530,58,631,100,629,105,528,63"/>
+<area shape="rect" title="Zentrale Steuerklasse für die Schrankbeleuchtung (Header)." alt="" coords="209,5,490,60"/>
+<area shape="rect" title=" " alt="" coords="5,108,72,133"/>
+<area shape="poly" title=" " alt="" coords="255,63,86,109,84,104,254,57"/>
+<area shape="rect" title=" " alt="" coords="96,108,152,133"/>
+<area shape="poly" title=" " alt="" coords="281,63,166,106,164,101,280,58"/>
+<area shape="rect" title=" " alt="" coords="176,108,277,133"/>
+<area shape="poly" title=" " alt="" coords="313,62,256,102,253,98,310,58"/>
+<area shape="rect" title=" " alt="" coords="302,108,397,133"/>
+<area shape="poly" title=" " alt="" coords="352,60,352,94,347,94,347,60"/>
+<area shape="rect" title=" " alt="" coords="421,108,547,133"/>
+<area shape="poly" title=" " alt="" coords="392,58,456,98,453,103,389,62"/>
+<area shape="rect" title=" " alt="" coords="572,108,703,133"/>
+<area shape="poly" title=" " alt="" coords="438,58,587,102,585,107,437,63"/>
 <area shape="rect" title=" " alt="" coords="727,108,793,133"/>
-<area shape="poly" title=" " alt="" coords="557,58,714,103,713,108,556,63"/>
+<area shape="poly" title=" " alt="" coords="486,57,714,105,713,110,485,63"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -111,10 +111,10 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="cabinetLight_8h__dep__incl.png" border="0" usemap="#a_2home_2runner_2work_2Schrankbeleuchtung-RPiPico_2Schrankbeleuchtung-RPiPico_2cabinetLight_8hdep" alt=""/></div>
 <map name="a_2home_2runner_2work_2Schrankbeleuchtung-RPiPico_2Schrankbeleuchtung-RPiPico_2cabinetLight_8hdep" id="a_2home_2runner_2work_2Schrankbeleuchtung-RPiPico_2Schrankbeleuchtung-RPiPico_2cabinetLight_8hdep">
-<area shape="rect" title="Zentrale Klasse zur Steuerung der Schrankbeleuchtung (Header)." alt="" coords="169,5,451,60"/>
+<area shape="rect" title="Zentrale Steuerklasse für die Schrankbeleuchtung (Header)." alt="" coords="169,5,451,60"/>
 <area shape="rect" href="cabinetLight_8cpp.html" title="Implementierung der Steuerlogik für die Schrankbeleuchtung (Raspberry Pi Pico)." alt="" coords="5,108,287,163"/>
 <area shape="poly" title=" " alt="" coords="257,69,190,110,188,105,254,65"/>
-<area shape="rect" href="main_8cpp.html" title="Firmware&#45;Einstiegspunkt für die automatisierte Schrankbeleuchtung." alt="" coords="311,115,639,155"/>
+<area shape="rect" href="main_8cpp.html" title="Einstiegspunkt der Firmware für die Schrankbeleuchtung (Raspberry Pi Pico W)" alt="" coords="311,115,639,155"/>
 <area shape="poly" title=" " alt="" coords="366,65,445,113,443,117,363,69"/>
 </map>
 </div>
@@ -128,17 +128,34 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Zentrale Klasse zur Steuerung der Schrankbeleuchtung (Header). </p>
-<p>Diese Klasse kapselt die komplette Steuerung von bis zu vier LED-Gruppen (z. B. für Schranktüren oder Fächer) über MOSFETs und Reedkontakte. Sie übernimmt die Initialisierung der Hardware, PWM-Dimmung, Interrupt-Handling und die Verarbeitung der Sensorereignisse. Die Klasse ist für den Einsatz auf einem Raspberry Pi Pico (W) optimiert und bietet eine flexible API für die Anpassung der Pinbelegung und Sensorlogik.</p>
-<p>Features:</p><ul>
-<li>Bis zu 4 separat schaltbare LED-Gruppen</li>
-<li>Automatische Steuerung über Magnetsensoren oder Reed-Schalter</li>
-<li>PWM-Dimmung für sanftes Ein-/Ausschalten</li>
-<li>Geringe Standby-Leistung durch Low-RDS(on)-MOSFETs</li>
-<li>Flexible Pinbelegung und Sensor-Polarity</li>
+<div class="textblock"><p>Zentrale Steuerklasse für die Schrankbeleuchtung (Header). </p>
+<p>Diese Klasse kapselt die komplette Steuerung von bis zu vier LED-Gruppen (z.B. für Schranktüren oder Fächer) über MOSFETs und Reedkontakte. Sie übernimmt Initialisierung, PWM-Dimmung, Interrupt-Handling und Event-Verarbeitung. Die Klasse ist für den Raspberry Pi Pico (W) optimiert und bietet eine flexible API für Pinbelegung und Sensorlogik.</p>
+<dl class="section user"><dt>Hauptfunktionen</dt><dd><ul>
+<li>Bis zu 4 separat schaltbare LED-Gruppen (z.B. für Türen oder Fächer)</li>
+<li>Automatische Steuerung über Magnetsensoren (Reedkontakte, active-low)</li>
+<li>PWM-Dimmung für sanftes Ein-/Ausschalten (Fading)</li>
+<li>Flexible Pinbelegung und Sensor-Polarity (active-low/high)</li>
+<li>Umfangreiche Logging-API mit LogLevel</li>
+<li>Fehlerbehandlung mit LED-Signalisierung</li>
+<li>Heartbeat-LED als Lebenszeichen</li>
+<li>Startup-Test für alle LED-Kanäle</li>
 </ul>
+</dd></dl>
+<dl class="section user"><dt>Beispiel für die Nutzung</dt><dd><div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="cabinetLight_8h.html">cabinetLight.h</a>&quot;</span></div>
+<div class="line"><span class="keyword">static</span> <a class="code hl_class" href="classCabinetLight.html">CabinetLight</a> light;</div>
+<div class="line">light.<a class="code hl_function" href="classCabinetLight.html#af638147069f5a50c4d9554ad51008e9b">setSensorPolarity</a>({<span class="keyword">true</span>, <span class="keyword">true</span>, <span class="keyword">true</span>, <span class="keyword">true</span>});</div>
+<div class="line">light.<a class="code hl_function" href="classCabinetLight.html#ae564665d6df96eb34a36bd9420a9e102">runStartupTest</a>();</div>
+<div class="line"><span class="keywordflow">while</span> (<span class="keyword">true</span>) {</div>
+<div class="line">    light.<a class="code hl_function" href="classCabinetLight.html#a3fabd7ab91b1bbb09c960eb79b1a9dee">process</a>();</div>
+<div class="line">}</div>
+<div class="ttc" id="acabinetLight_8h_html"><div class="ttname"><a href="cabinetLight_8h.html">cabinetLight.h</a></div><div class="ttdoc">Zentrale Steuerklasse für die Schrankbeleuchtung (Header).</div></div>
+<div class="ttc" id="aclassCabinetLight_html"><div class="ttname"><a href="classCabinetLight.html">CabinetLight</a></div><div class="ttdoc">Kapselt die Steuerung der Schrankbeleuchtung (bis zu 4 Kanäle).</div><div class="ttdef"><b>Definition</b> cabinetLight.h:58</div></div>
+<div class="ttc" id="aclassCabinetLight_html_a3fabd7ab91b1bbb09c960eb79b1a9dee"><div class="ttname"><a href="classCabinetLight.html#a3fabd7ab91b1bbb09c960eb79b1a9dee">CabinetLight::process</a></div><div class="ttdeci">void process()</div><div class="ttdoc">Verarbeitet anstehende Events (z. B. Sensoränderungen, Fading).</div><div class="ttdef"><b>Definition</b> cabinetLight.cpp:235</div></div>
+<div class="ttc" id="aclassCabinetLight_html_ae564665d6df96eb34a36bd9420a9e102"><div class="ttname"><a href="classCabinetLight.html#ae564665d6df96eb34a36bd9420a9e102">CabinetLight::runStartupTest</a></div><div class="ttdeci">void runStartupTest()</div><div class="ttdoc">Führt einen sichtbaren Startup-Test aus (alle LEDs blinken nacheinander).</div><div class="ttdef"><b>Definition</b> cabinetLight.cpp:370</div></div>
+<div class="ttc" id="aclassCabinetLight_html_af638147069f5a50c4d9554ad51008e9b"><div class="ttname"><a href="classCabinetLight.html#af638147069f5a50c4d9554ad51008e9b">CabinetLight::setSensorPolarity</a></div><div class="ttdeci">void setSensorPolarity(const std::array&lt; bool, DEV_COUNT &gt; &amp;polarity)</div><div class="ttdoc">Setzt die Polarity (active low/high) für jeden Sensor.</div><div class="ttdef"><b>Definition</b> cabinetLight.cpp:364</div></div>
+</div><!-- fragment --></dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Knut Welzel <a href="#" onclick="location.href='mai'+'lto:'+'knu'+'t.'+'wel'+'ze'+'l@g'+'ma'+'il.'+'co'+'m'; return false;">knut.<span class="obfuscator">.nosp@m.</span>welz<span class="obfuscator">.nosp@m.</span>el@gm<span class="obfuscator">.nosp@m.</span>ail.<span class="obfuscator">.nosp@m.</span>com</a> </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>2025-06-28 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2025-09-13 </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>MIT </dd></dl>
 </div></div><!-- contents -->
 <!-- start footer part -->

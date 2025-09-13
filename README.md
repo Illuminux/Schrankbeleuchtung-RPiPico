@@ -157,7 +157,8 @@ Schrankbeleuchtung/
 ---
 
 
-## 📚 Dokumentation generieren (optional)
+
+## 📚 Dokumentation generieren & veröffentlichen
 
 Mit Doxygen kannst du eine HTML-Dokumentation aus den Quelltext-Kommentaren erzeugen:
 
@@ -165,13 +166,29 @@ Mit Doxygen kannst du eine HTML-Dokumentation aus den Quelltext-Kommentaren erze
 doxygen Doxyfile
 ```
 
-Siehe Doxygen-Website für Details zur Konfiguration.
+Das Ergebnis findest du im Ordner `docs/html`.
+
+### 📢 Doxygen-Doku auf GitHub Pages veröffentlichen
+
+Die Veröffentlichung der Doxygen-Dokumentation auf GitHub Pages ist in diesem Repository bereits automatisiert:
+
+1. Bei jedem Push auf den `main`-Branch wird die Doxygen-Dokumentation automatisch per GitHub Actions Workflow generiert und auf den Branch `gh-pages` deployed.
+2. In den Repository-Einstellungen unter "Pages" ist der Branch `gh-pages` (root) als Quelle für GitHub Pages ausgewählt.
+3. Die Doxygen-Dokumentation ist dann online unter:
+   `https://illuminux.github.io/Schrankbeleuchtung-RPiPico/`
+
+**Hinweis:** Der Workflow befindet sich in `.github/workflows/doxygen.yml` und kann bei Bedarf angepasst werden.
+
+Weitere Details: [GitHub Pages Dokumentation](https://docs.github.com/en/pages)
+
+---
 
 ---
 
 ## ⚖️ Lizenz
 
 Dieses Projekt steht unter der MIT-Lizenz.  
+
 Feel free to modify, use & share!
 
 ---

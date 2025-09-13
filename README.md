@@ -1,11 +1,19 @@
 # 💡 Schrankbeleuchtung – Firmware für den Raspberry Pi Pico W
 
+
 Automatisierte LED-Beleuchtung für Schränke, realisiert mit einem Raspberry Pi Pico W. Die Firmware steuert bis zu vier LED-Gruppen über MOSFETs und wertet Türsensoren (Reedkontakte) aus, um die Beleuchtung automatisch zu schalten und sanft zu dimmen.
+
+**Neu:**
+- Ausführliche Code-Kommentare und Doxygen-Dokumentation (siehe Quellcode)
+- Logging-API mit LogLevel (ERROR, WARN, INFO, DEBUG)
+- Robuste Fehlerbehandlung mit LED-Signalisierung
+- Hinweise zur Thread-Sicherheit und atomaren Event-Verarbeitung
 
 **Die zugehörige elektronische Schaltung (Schaltplan und Layout) findest du im separaten Repository:**  
 👉 [Illuminux/Schrankbeleuchtung-KiCad](https://github.com/Illuminux/Schrankbeleuchtung-KiCad.git)
 
 ---
+
 
 ## 🧩 Features
 
@@ -15,13 +23,17 @@ Automatisierte LED-Beleuchtung für Schränke, realisiert mit einem Raspberry Pi
 - Flexible Pinbelegung für LEDs und Sensoren (per Software konfigurierbar)
 - Sensor-Polarity (active-low/active-high) individuell einstellbar
 - IRQ-basierte Ereignisverarbeitung mit atomarer Bitmaske, Fallback auf Polling
+- Umfangreiche Logging-API (LogLevel wählbar)
+- Fehlerbehandlung mit LED-Signalisierung (fatalErrorBlink)
+- Doxygen-Dokumentation und ausführliche Code-Kommentare
 - Versorgung mit 12 V DC, intern auf 5 V und 3.3 V geregelt
 - Geringe Standby-Leistung durch Low-RDS(on)-MOSFETs
 - Erweiterbare Anschlüsse über XH-Steckerleisten
 
 ---
 
-## ⚙️ Firmware-Architektur & Hinweise
+
+## ⚙️ Architektur & Hinweise
 
 - **PWM-Frequenz:** 1 kHz (PWM_WRAP = 12500, 12 Bit Auflösung)
 - **Fading:** Dimmzeit von 0 auf 100 % ca. 125 ms (bei Standard-Setup)
@@ -30,6 +42,29 @@ Automatisierte LED-Beleuchtung für Schränke, realisiert mit einem Raspberry Pi
 - **IRQ-Handling:** Singleton-Pattern, atomare Bitmasken für sichere Event-Verarbeitung
 - **Polling-Fallback:** Falls IRQs verloren gehen, werden Sensoren regelmäßig gepollt
 - **Sanftes Dimmen:** LEDs werden beim Öffnen/Schließen der Tür sanft ein- und ausgeblendet
+- **Logging:** Umfangreiche Logging-API mit LogLevel (ERROR, WARN, INFO, DEBUG)
+- **Fehlerbehandlung:** Fehler werden per LED und Log ausgegeben (fatalErrorBlink)
+- **Thread-Sicherheit:** Atomare Event-Flags, Hinweise im Code (siehe Doxygen)
+## 📝 Beispiel: Nutzung der API
+
+```cpp
+#include "cabinetLight.h"
+
+int main() {
+   stdio_init_all();
+   CabinetLight light;
+   if (!light.isInitialized()) {
+      CabinetLight::fatalErrorBlink();
+   }
+   light.setSensorPolarity({true, true, true, true});
+   light.runStartupTest();
+   while (true) {
+      light.process();
+   }
+}
+```
+
+Weitere Beispiele und Hinweise findest du direkt im Quellcode (ausführliche Kommentare und Doxygen).
 
 ---
 
@@ -94,17 +129,20 @@ Die vollständige Stückliste sowie Schaltplan und Layout befinden sich im [Schr
 
 ---
 
-## 🧠 Firmware-Hinweise
+
+## 🧠 Firmware-Hinweise & Dokumentation
 
 - LED-GPIOs werden als PWM-Ausgänge initialisiert
 - Sensor-GPIOs mit Pull-Down und Interrupt/Debounce
 - Bei Türöffnung wird die zugehörige LED sanft hochgedimmt, beim Schließen heruntergedimmt
 - Die Steuerung erfolgt vollständig interruptbasiert für schnelle Reaktion und niedrigen Stromverbrauch
 - Flexible Anpassung der Pinbelegung und Sensorlogik per Software
+- Umfangreiche Doxygen-Kommentare und Hinweise zu Thread-Sicherheit im Code
 
 ---
 
-## 📁 Verzeichnisstruktur
+
+## 📁 Verzeichnisstruktur (Auszug)
 
 ```
 Schrankbeleuchtung/
@@ -115,6 +153,19 @@ Schrankbeleuchtung/
 ├── README.md
 └── ...
 ```
+
+---
+
+
+## 📚 Dokumentation generieren (optional)
+
+Mit Doxygen kannst du eine HTML-Dokumentation aus den Quelltext-Kommentaren erzeugen:
+
+```sh
+doxygen Doxyfile
+```
+
+Siehe Doxygen-Website für Details zur Konfiguration.
 
 ---
 

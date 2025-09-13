@@ -202,25 +202,27 @@ void CabinetLight::process() {
         }
     }
     // 2. Polling-Fallback: prüft regelmäßig die Sensor-GPIOs (falls IRQs verloren gehen)
-    for (int i = 0; i < static_cast<int>(DEV_COUNT); ++i) {
-        bool raw = gpio_get(sensorPins[i]) != 0;
-        if (raw != lastRawState[i]) {
-            absolute_time_t now = get_absolute_time();
-            if (absolute_time_diff_us(lastTriggerTime[i], now) >= DEBOUNCE_MS * 1000) {
-                lastTriggerTime[i] = now;
-                logDebug("[POLL] sensor %d raw=%d (changed)\n", i, raw);
-                bool door_open = sensorActiveLow[i] ? (raw == 0) : (raw != 0);
-                logDebug("[POLL] sensor %d door_open=%d\n", i, door_open);
-                if (door_open && !ledState[i]) {
-                    fadeLed(ledPins[i], true);
-                    ledState[i] = true;
-                } else if (!door_open && ledState[i]) {
-                    fadeLed(ledPins[i], false);
-                    ledState[i] = false;
+    if (pollingFallback) {
+        for (int i = 0; i < static_cast<int>(DEV_COUNT); ++i) {
+            bool raw = gpio_get(sensorPins[i]) != 0;
+            if (raw != lastRawState[i]) {
+                absolute_time_t now = get_absolute_time();
+                if (absolute_time_diff_us(lastTriggerTime[i], now) >= DEBOUNCE_MS * 1000) {
+                    lastTriggerTime[i] = now;
+                    logDebug("[POLL] sensor %d raw=%d (changed)\n", i, raw);
+                    bool door_open = sensorActiveLow[i] ? (raw == 0) : (raw != 0);
+                    logDebug("[POLL] sensor %d door_open=%d\n", i, door_open);
+                    if (door_open && !ledState[i]) {
+                        fadeLed(ledPins[i], true);
+                        ledState[i] = true;
+                    } else if (!door_open && ledState[i]) {
+                        fadeLed(ledPins[i], false);
+                        ledState[i] = false;
+                    }
                 }
             }
+            lastRawState[i] = raw;
         }
-        lastRawState[i] = raw;
     }
     // 3. Fading-Logik: aktuelles PWM-Level schrittweise ans Ziellevel anpassen
     for (size_t i = 0; i < DEV_COUNT; ++i) {
@@ -299,6 +301,15 @@ void CabinetLight::runStartupTest() {
         sleep_ms(50);
     }
     logInfo("[TEST] Startup LED test completed.\n");
+}
+
+void CabinetLight::setPollingFallback(bool enable) {
+    pollingFallback = enable;
+    logInfo("Polling-Fallback %s\n", enable ? "aktiviert" : "deaktiviert");
+}
+
+bool CabinetLight::getPollingFallback() const {
+    return pollingFallback;
 }
 
 // === Logging-Implementierung ===

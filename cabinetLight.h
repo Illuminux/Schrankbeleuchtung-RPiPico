@@ -240,7 +240,16 @@ public:
     static void logInfo(const char* fmt, ...);
     static void logDebug(const char* fmt, ...);
 
+    /**
+     * @brief Aktiviert/deaktiviert das Polling-Fallback für Sensoren.
+     * Default: false (nur IRQ)
+     */
+    void setPollingFallback(bool enable);
+    bool getPollingFallback() const;
+
 private:
+
+    bool pollingFallback = false;
 
     static LogLevel logLevel;
 

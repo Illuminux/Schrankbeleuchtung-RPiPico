@@ -45,6 +45,7 @@
  * @return int Rückgabewert (0 bei Erfolg)
  */
 int main() {
+
     // === 1. Debug-Ausgabe und USB-Initialisierung ===
     stdio_init_all(); ///< Initialisiere USB-CDC für serielle Debug-Ausgaben
     sleep_ms(200);    ///< Warte, damit der Host Zeit für USB-Enumeration hat
@@ -69,6 +70,11 @@ int main() {
     // === 4. CabinetLight-Instanz erstellen und konfigurieren ===
     static CabinetLight cabinetLightInstance;
     CabinetLight *cabinetLight = &cabinetLightInstance;
+
+    // === 3a. Polling-Fallback explizit deaktivieren (nur IRQ-Betrieb) ===
+    // Für reinen IRQ-Betrieb: Polling-Fallback bleibt aus (Standard: false)
+    // Zum Aktivieren: cabinetLight->setPollingFallback(true);
+    cabinetLight->setPollingFallback(false);
 
     // === 5. Initialisierungsstatus prüfen ===
     if (!cabinetLight->isInitialized()) {
@@ -97,6 +103,7 @@ int main() {
 
     // === 9. Hauptschleife ===
     while (true) {
+        
         // --- 9.1. Verarbeite Sensor- und LED-Events ---
         cabinetLight->process();
 

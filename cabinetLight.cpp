@@ -48,7 +48,7 @@ const std::array<uint8_t, CabinetLight::DEV_COUNT> CabinetLight::DEFAULT_SENSOR_
 
 // Konstruktor: Initialisiert alle Kanäle, Pins und Statusarrays
 CabinetLight::CabinetLight() {
-    printf("[DEBUG] CabinetLight Konstruktor aufgerufen.\n");
+    logDebug("CabinetLight Konstruktor aufgerufen.\n");
     instance.store(this, std::memory_order_release);
     ledPins = DEFAULT_LED_PINS;
     sensorPins = DEFAULT_SENSOR_PINS;
@@ -56,7 +56,7 @@ CabinetLight::CabinetLight() {
     // PWM für alle LED-Pins initialisieren
     for (uint8_t gpio : ledPins) {
         if (!setupPwmLEDs(gpio)) {
-            printf("[ERROR] PWM-Init fehlgeschlagen für GPIO %d\n", gpio);
+            logError("PWM-Init fehlgeschlagen für GPIO %d\n", gpio);
             initialized = false;
         }
     }
@@ -65,7 +65,7 @@ CabinetLight::CabinetLight() {
     // Sensor-GPIOs initialisieren (inkl. Pull-Down und IRQ)
     for (uint8_t gpio : sensorPins) {
         if (!setupSensors(gpio)) {
-            printf("[ERROR] Sensor-Init fehlgeschlagen für GPIO %d\n", gpio);
+            logError("Sensor-Init fehlgeschlagen für GPIO %d\n", gpio);
             initialized = false;
         }
     }
@@ -75,19 +75,19 @@ CabinetLight::CabinetLight() {
     ledState.fill(false);
     lastTriggerTime.fill({});
     if (initialized) {
-        printf("[DEBUG] CabinetLight Konstruktor abgeschlossen.\n");
+        logDebug("CabinetLight Konstruktor abgeschlossen.\n");
     } else {
-        printf("[ERROR] CabinetLight Initialisierung unvollständig!\n");
+        logError("CabinetLight Initialisierung unvollständig!\n");
     }
 }
 
 // Initialisiert einen LED-Pin für PWM-Betrieb
 bool CabinetLight::setupPwmLEDs(uint8_t gpio) {
     if (gpio > 29) {
-        printf("[ERROR] Ungültiger LED-GPIO: %d\n", gpio);
+        logError("Ungültiger LED-GPIO: %d\n", gpio);
         return false;
     }
-    printf("[DEBUG] setupPwmLEDs: Konfiguriere PWM für GPIO %d\n", gpio);
+    logDebug("setupPwmLEDs: Konfiguriere PWM für GPIO %d\n", gpio);
     gpio_init(gpio);
     gpio_set_function(gpio, GPIO_FUNC_PWM);
     gpio_set_pulls(gpio, false, false);
@@ -117,10 +117,10 @@ bool CabinetLight::setupPwmLEDs(uint8_t gpio) {
 // Initialisiert einen Sensor-Pin als Eingang mit Pull-Down und IRQ
 bool CabinetLight::setupSensors(uint8_t gpio) {
     if (gpio > 29) {
-        printf("[ERROR] Ungültiger Sensor-GPIO: %d\n", gpio);
+        logError("Ungültiger Sensor-GPIO: %d\n", gpio);
         return false;
     }
-    printf("[DEBUG] setupSensors: Konfiguriere Sensor GPIO %d\n", gpio);
+    logDebug("setupSensors: Konfiguriere Sensor GPIO %d\n", gpio);
     gpio_init(gpio);
     gpio_set_dir(gpio, GPIO_IN);
     gpio_pull_down(gpio);
@@ -156,7 +156,7 @@ void CabinetLight::fadeLed(uint gpio, bool on) {
 
 // Statischer IRQ-Handler: leitet an Instanz weiter
 void CabinetLight::gpioCallback(uint gpio, uint32_t events) {
-    printf("[DEBUG] gpioCallback: GPIO %d, events=0x%08x\n", gpio, events);
+    logDebug("gpioCallback: GPIO %d, events=0x%08x\n", gpio, events);
     CabinetLight* inst = getInstance();
     if (!inst) return;
     inst->onGpioIrq(gpio);
@@ -166,7 +166,7 @@ void CabinetLight::gpioCallback(uint gpio, uint32_t events) {
 void CabinetLight::onGpioIrq(uint gpio) {
     for (int i = 0; i < static_cast<int>(DEV_COUNT); ++i) {
         if (sensorPins[i] == gpio) {
-            printf("[DEBUG] onGpioIrq: matched sensor index %d (gpio %d)\n", i, gpio);
+            logDebug("onGpioIrq: matched sensor index %d (gpio %d)\n", i, gpio);
             pendingMask.fetch_or(static_cast<uint8_t>(1u << i));
             break;
         }
@@ -187,15 +187,15 @@ void CabinetLight::process() {
             bool gpio_state = gpio_get(sensorPins[i]);
             // Sensorlogik: active-low oder active-high
             bool door_open = sensorActiveLow[i] ? (gpio_state == 0) : (gpio_state != 0);
-            printf("[DEBUG] process: sensor %d gpio=%d state=%d door_open=%d ledState=%d\n", i, sensorPins[i], gpio_state, door_open, ledState[i]);
+            logDebug("process: sensor %d gpio=%d state=%d door_open=%d ledState=%d\n", i, sensorPins[i], gpio_state, door_open, ledState[i]);
             if (door_open && !ledState[i]) {
                 // Tür wurde geöffnet, LED einschalten (faden)
-                printf("[DEBUG] process: opening detected on sensor %d -> fade on\n", i);
+                logDebug("process: opening detected on sensor %d -> fade on\n", i);
                 fadeLed(ledPins[i], true);
                 ledState[i] = true;
             } else if (!door_open && ledState[i]) {
                 // Tür wurde geschlossen, LED ausschalten (faden)
-                printf("[DEBUG] process: closing detected on sensor %d -> fade off\n", i);
+                logDebug("process: closing detected on sensor %d -> fade off\n", i);
                 fadeLed(ledPins[i], false);
                 ledState[i] = false;
             }
@@ -208,9 +208,9 @@ void CabinetLight::process() {
             absolute_time_t now = get_absolute_time();
             if (absolute_time_diff_us(lastTriggerTime[i], now) >= DEBOUNCE_MS * 1000) {
                 lastTriggerTime[i] = now;
-                printf("[POLL] sensor %d raw=%d (changed)\n", i, raw);
+                logDebug("[POLL] sensor %d raw=%d (changed)\n", i, raw);
                 bool door_open = sensorActiveLow[i] ? (raw == 0) : (raw != 0);
-                printf("[POLL] sensor %d door_open=%d\n", i, door_open);
+                logDebug("[POLL] sensor %d door_open=%d\n", i, door_open);
                 if (door_open && !ledState[i]) {
                     fadeLed(ledPins[i], true);
                     ledState[i] = true;
@@ -289,14 +289,49 @@ void CabinetLight::setSensorPolarity(const std::array<bool, DEV_COUNT>& polarity
 
 // Lässt alle LEDs nacheinander kurz aufleuchten (Test beim Start)
 void CabinetLight::runStartupTest() {
-    printf("[TEST] Running startup LED test...\n");
+    logInfo("[TEST] Running startup LED test...\n");
     for (size_t i = 0; i < DEV_COUNT; ++i) {
         uint8_t g = ledPins[i];
-        printf("[TEST] Blink LED on GPIO %d\n", g);
+    logInfo("[TEST] Blink LED on GPIO %d\n", g);
         pwm_set_gpio_level(g, PWM_WRAP); // LED an
         sleep_ms(300);
         pwm_set_gpio_level(g, 0);        // LED aus
         sleep_ms(50);
     }
-    printf("[TEST] Startup LED test completed.\n");
+    logInfo("[TEST] Startup LED test completed.\n");
+}
+
+// === Logging-Implementierung ===
+CabinetLight::LogLevel CabinetLight::logLevel = CabinetLight::LogLevel::INFO;
+
+void CabinetLight::setLogLevel(LogLevel level) {
+    logLevel = level;
+}
+
+CabinetLight::LogLevel CabinetLight::getLogLevel() {
+    return logLevel;
+}
+void CabinetLight::logError(const char* fmt, ...) {
+    if (logLevel >= LogLevel::ERROR) {
+        printf("[ERROR] ");
+        va_list args; va_start(args, fmt); vprintf(fmt, args); va_end(args);
+    }
+}
+void CabinetLight::logWarn(const char* fmt, ...) {
+    if (logLevel >= LogLevel::WARN) {
+        printf("[WARN] ");
+        va_list args; va_start(args, fmt); vprintf(fmt, args); va_end(args);
+    }
+}
+void CabinetLight::logInfo(const char* fmt, ...) {
+    if (logLevel >= LogLevel::INFO) {
+        printf("[INFO] ");
+        va_list args; va_start(args, fmt); vprintf(fmt, args); va_end(args);
+    }
+}
+void CabinetLight::logDebug(const char* fmt, ...) {
+    if (logLevel >= LogLevel::DEBUG) {
+        printf("[DEBUG] ");
+        va_list args; va_start(args, fmt); vprintf(fmt, args); va_end(args);
+    }
 }

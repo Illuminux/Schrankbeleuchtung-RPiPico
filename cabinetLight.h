@@ -27,12 +27,12 @@
 #ifndef CABINET_LIGHT_H
 #define CABINET_LIGHT_H
 
+#include <cstdint>          // Für uint8_t, uint16_t
+#include <array>            // Für std::array
 #include "pico/stdlib.h"    // Für GPIO und Standardfunktionen
 #include "pico/time.h"      // Für Zeitfunktionen
 #include "hardware/gpio.h"  // Für GPIO-Hardwarezugriff
 #include "hardware/pwm.h"   // Für PWM-Hardwarezugriff
-#include <array>            // Für std::array
-#include <cstdint>          // Für uint8_t, uint16_t
 #include <atomic>           // Für std::atomic
 
 /**
@@ -45,6 +45,7 @@
  * verschiedene Sensor-Polarity-Einstellungen.
  */
 class CabinetLight {
+
 public:
 
     /**
@@ -146,6 +147,16 @@ public:
     std::array<bool, DEV_COUNT> sensorActiveLow{{true, true, true, true}};
 
     /**
+     * @brief Interner Initialisierungsstatus
+     */
+    enum class LogLevel : uint8_t { 
+        ERROR = 0, 
+        WARN = 1, 
+        INFO = 2, 
+        DEBUG = 3 
+    };
+
+    /**
      * @brief Konstruktor: Initialisiert GPIOs und PWM für alle Kanäle.
      */
     CabinetLight();
@@ -221,7 +232,17 @@ public:
      */
     void runStartupTest();
 
+    // === Logging ===
+    static void setLogLevel(LogLevel level);
+    static LogLevel getLogLevel();
+    static void logError(const char* fmt, ...);
+    static void logWarn(const char* fmt, ...);
+    static void logInfo(const char* fmt, ...);
+    static void logDebug(const char* fmt, ...);
+
 private:
+
+    static LogLevel logLevel;
 
     /**
      * @brief Interner Initialisierungsstatus

@@ -313,6 +313,30 @@ bool CabinetLight::getPollingFallback() const {
     return pollingFallback;
 }
 
+// Blinkt die Onboard-LED (z.B. Boot- oder Heartbeat-Anzeige)
+void CabinetLight::blinkOnboardLed(int times, int on_ms, int off_ms) {
+    gpio_init(PICO_DEFAULT_LED_PIN);
+    gpio_set_dir(PICO_DEFAULT_LED_PIN, GPIO_OUT);
+    for (int i = 0; i < times; ++i) {
+        gpio_put(PICO_DEFAULT_LED_PIN, 1);
+        sleep_ms(on_ms);
+        gpio_put(PICO_DEFAULT_LED_PIN, 0);
+        sleep_ms(off_ms);
+    }
+}
+
+// Endlosschleife für Fehleranzeige (Onboard-LED schnelles Blinken)
+[[noreturn]] void CabinetLight::fatalErrorBlink() {
+    gpio_init(PICO_DEFAULT_LED_PIN);
+    gpio_set_dir(PICO_DEFAULT_LED_PIN, GPIO_OUT);
+    while (true) {
+        gpio_put(PICO_DEFAULT_LED_PIN, 1);
+        sleep_ms(100);
+        gpio_put(PICO_DEFAULT_LED_PIN, 0);
+        sleep_ms(100);
+    }
+}
+
 // === Logging-Implementierung ===
 CabinetLight::LogLevel CabinetLight::logLevel = CabinetLight::LogLevel::INFO;
 

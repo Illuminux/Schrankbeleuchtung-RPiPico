@@ -61,6 +61,20 @@ public:
     }
 
     /**
+     * @brief Lässt die Onboard-LED blinken (z.B. als Boot- oder Heartbeat-Anzeige).
+     * @param times Anzahl der Blinkzyklen
+     * @param on_ms Dauer LED an (ms)
+     * @param off_ms Dauer LED aus (ms)
+     */
+    static void blinkOnboardLed(int times, int on_ms, int off_ms);
+
+    /**
+     * @brief Endlosschleife für Fehleranzeige (Onboard-LED schnelles Blinken).
+     * @noreturn
+     */
+    [[noreturn]] static void fatalErrorBlink();
+
+    /**
      * @brief Anzahl der unterstützten LED-/Sensor-Kanäle.
      */
     static constexpr size_t DEV_COUNT = 4;

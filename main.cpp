@@ -103,13 +103,13 @@ int main() {
 
     // === 9. Hauptschleife ===
     while (true) {
-        
+
         // --- 9.1. Verarbeite Sensor- und LED-Events ---
         cabinetLight->process();
 
         // --- 9.2. Heartbeat-LED toggeln (alle 1s) ---
         absolute_time_t now = get_absolute_time();
-        if (absolute_time_diff_us(hb_last, now) > 1000 * 1000) {
+        if (absolute_time_diff_us(hb_last, now) > CabinetLight::HEARTBEAT_INTERVAL_MS * 1000) {
             hb_last = now;
             hb_state = !hb_state;
             gpio_put(PICO_DEFAULT_LED_PIN, hb_state);

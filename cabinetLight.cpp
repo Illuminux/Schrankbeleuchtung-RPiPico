@@ -109,7 +109,7 @@ bool CabinetLight::setupPwmLEDs(uint8_t gpio) {
         fading[idx] = false;
     }
     pwm_set_gpio_level(gpio, PWM_WRAP);
-    sleep_ms(100);
+    sleep_ms(PWM_TEST_DELAY_MS);
     pwm_set_gpio_level(gpio, 0);
     return true;
 }
@@ -240,6 +240,7 @@ void CabinetLight::process() {
         }
         pwm_set_gpio_level(ledPins[i], currentLevel[i]);
         if (currentLevel[i] == targetLevel[i]) fading[i] = false;
+        sleep_ms(FADING_STEP_MS); // Fading-Schritt-Delay jetzt als constexpr
     }
 }
 
@@ -294,11 +295,11 @@ void CabinetLight::runStartupTest() {
     logInfo("[TEST] Running startup LED test...\n");
     for (size_t i = 0; i < DEV_COUNT; ++i) {
         uint8_t g = ledPins[i];
-    logInfo("[TEST] Blink LED on GPIO %d\n", g);
+        logInfo("[TEST] Blink LED on GPIO %d\n", g);
         pwm_set_gpio_level(g, PWM_WRAP); // LED an
-        sleep_ms(300);
+        sleep_ms(STARTUP_LED_ON_MS);
         pwm_set_gpio_level(g, 0);        // LED aus
-        sleep_ms(50);
+        sleep_ms(STARTUP_LED_OFF_MS);
     }
     logInfo("[TEST] Startup LED test completed.\n");
 }

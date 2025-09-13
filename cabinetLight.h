@@ -86,6 +86,27 @@ public:
      */
     static constexpr uint16_t FADE_STEP = 1000;
 
+        /**
+     * @brief Standard-Intervall für das Heartbeat-Blinken (Millisekunden)
+     */
+    static constexpr uint32_t HEARTBEAT_INTERVAL_MS = 1000;
+
+    /**
+     * @brief Standard-Intervall für Fading-Schritte (Millisekunden)
+     */
+    static constexpr uint32_t FADING_STEP_MS = 50;
+
+    /**
+     * @brief Verzögerung für LED-Test beim Start (Millisekunden)
+     */
+    static constexpr uint32_t STARTUP_LED_ON_MS = 300;
+    static constexpr uint32_t STARTUP_LED_OFF_MS = 50;
+
+    /**
+     * @brief PWM-Test-Delay (Millisekunden)
+     */
+    static constexpr uint32_t PWM_TEST_DELAY_MS = 100;
+
     /**
      * @brief Default-GPIO-Pins für die LEDs (Definition in .cpp).
      */

@@ -1,29 +1,36 @@
 /**
  * @file main.cpp
- * @brief Firmware-Einstiegspunkt für die automatisierte Schrankbeleuchtung.
+ * @brief Einstiegspunkt der Firmware für die Schrankbeleuchtung (Raspberry Pi Pico W)
  *
- * Dieses Programm steuert bis zu vier LED-Gruppen in einem Schrank automatisch
- * über Reedkontakte (Magnetsensoren) und MOSFETs mit einem Raspberry Pi Pico W.
- * Die Firmware übernimmt die Initialisierung der Hardware, die Konfiguration der
- * Sensoren und LEDs sowie die Verarbeitung von Sensorereignissen, um die LEDs
- * abhängig vom Türzustand sanft ein- und auszublenden (PWM-Dimmung).
+ * Diese Firmware steuert bis zu vier LED-Gruppen in einem Schrank oder Möbelstück
+ * automatisch über Reedkontakte (Magnetsensoren) und MOSFETs. Die LEDs werden per
+ * PWM sanft ein- und ausgeblendet. Die Steuerung erfolgt ereignisbasiert über GPIO-Interrupts
+ * (IRQ) – ein optionales Polling-Fallback kann aktiviert werden. Die Firmware bietet
+ * robuste Fehlerbehandlung, flexible Sensor-Polarity, einen Startup-Test und eine Heartbeat-LED.
  *
- * Features:
- * - Bis zu 4 separat schaltbare LED-Gruppen (z. B. für mehrere Türen/Fächer)
- * - Automatische Steuerung über Reedkontakte (Magnetsensoren)
- * - PWM-Dimmung für sanftes Ein-/Ausschalten der LEDs
- * - Geringe Standby-Leistung durch effiziente MOSFETs
- * - Heartbeat-LED zur Laufzeitüberwachung
- * - Erweiterbare Hardware-Anschlüsse
+ * Hauptfunktionen:
+ * - Automatische Lichtsteuerung für bis zu 4 Türen/Fächer
+ * - Reedkontakte (Magnetsensoren) als Türsensoren (active-low, konfigurierbar)
+ * - PWM-Dimmung für sanftes Ein-/Ausschalten (Fading)
+ * - IRQ-basiertes Event-Handling (Polling-Fallback optional)
+ * - Fehlerbehandlung mit LED-Signalisierung
+ * - Heartbeat-LED als Lebenszeichen
+ * - Startup-Test für alle LED-Kanäle
+ * - Umfangreiche Logging-API mit LogLevel
  *
  * Hardware-Anforderungen:
  * - Raspberry Pi Pico W
  * - 12V DC Versorgung (intern auf 5V/3.3V geregelt)
  * - MOSFETs für LED-Schaltung
- * - Reedkontakte an den Türen
+ * - Reedkontakte an den Türen (GPIO)
+ *
+ * Besonderheiten:
+ * - Alle Zeit- und Fading-Parameter als constexpr zentral definiert
+ * - Modularer Aufbau: CabinetLight-Klasse kapselt alle Steuerungsfunktionen
+ * - Einfache Erweiterbarkeit für weitere Kanäle oder Sensorlogik
  *
  * @author Knut Welzel <knut.welzel@gmail.com>
- * @date 2025-06-28
+ * @date 2025-09-13
  * @copyright MIT
  */
 
@@ -46,76 +53,55 @@
  */
 int main() {
 
-    // === 1. Debug-Ausgabe und USB-Initialisierung ===
-    stdio_init_all(); ///< Initialisiere USB-CDC für serielle Debug-Ausgaben
-    sleep_ms(200);    ///< Warte, damit der Host Zeit für USB-Enumeration hat
+    // 1. USB-CDC initialisieren (ermöglicht printf-Debug-Ausgaben über USB)
+    stdio_init_all();
+    sleep_ms(200); // Warten, damit Host Zeit für USB-Enumeration hat
     printf("[DEBUG] Firmware-Start.\n");
 
-    // === 2. Boot-Blink auf der Onboard-LED (GPIO25) ===
-    // Zeigt an, dass die Firmware erfolgreich gestartet ist
-    gpio_init(PICO_DEFAULT_LED_PIN);
-    gpio_set_dir(PICO_DEFAULT_LED_PIN, GPIO_OUT);
-    for (int i = 0; i < 3; ++i) {
-        gpio_put(PICO_DEFAULT_LED_PIN, 1); // LED an
-        sleep_ms(150);
-        gpio_put(PICO_DEFAULT_LED_PIN, 0); // LED aus
-        sleep_ms(150);
-    }
+    // 2. Boot-Blink: Onboard-LED blinkt 3x als Lebenszeichen nach Reset
+    CabinetLight::blinkOnboardLed(3, 150, 150);
 
-    // === 3. Interrupts für GPIO-Bank 0 aktivieren ===
-    // Ermöglicht die Verarbeitung von Sensorereignissen über IRQs
+    // 3. GPIO-Interrupts für Sensoren aktivieren (ermöglicht IRQ-basiertes Event-Handling)
     irq_set_enabled(IO_IRQ_BANK0, true);
 
-
-    // === 4. CabinetLight-Instanz erstellen und konfigurieren ===
+    // 4. CabinetLight-Instanz erzeugen und konfigurieren
+    //    - Kapselt alle Logik für Sensoren, LEDs, PWM, Fading, Fehlerbehandlung
     static CabinetLight cabinetLightInstance;
     CabinetLight *cabinetLight = &cabinetLightInstance;
+    cabinetLight->setPollingFallback(false); // Polling-Fallback deaktiviert (nur IRQ-Betrieb)
 
-    // === 3a. Polling-Fallback explizit deaktivieren (nur IRQ-Betrieb) ===
-    // Für reinen IRQ-Betrieb: Polling-Fallback bleibt aus (Standard: false)
-    // Zum Aktivieren: cabinetLight->setPollingFallback(true);
-    cabinetLight->setPollingFallback(false);
-
-    // === 5. Initialisierungsstatus prüfen ===
+    // 5. Initialisierung prüfen: Bei Fehler Endlosschleife mit Fehler-Blink
     if (!cabinetLight->isInitialized()) {
         printf("[FATAL] Fehler bei der Initialisierung der CabinetLight-Hardware!\n");
-        while (true) {
-            // Fehleranzeige: Onboard-LED blinkt schnell
-            gpio_put(PICO_DEFAULT_LED_PIN, 1);
-            sleep_ms(100);
-            gpio_put(PICO_DEFAULT_LED_PIN, 0);
-            sleep_ms(100);
-        }
+        CabinetLight::fatalErrorBlink();
     }
 
-    // === 6. Sensor-Polarity setzen ===
-    std::array<bool, CabinetLight::DEV_COUNT> sensorPol = {true, true, true, true};
-    cabinetLight->setSensorPolarity(sensorPol);
-    printf("[TEST] Sensor polarity set to active-low (true for active-low)\n");
+    // 6. Sensor-Polarity setzen: Alle Sensoren als active-low (Reedkontakt schließt gegen Masse)
+    cabinetLight->setSensorPolarity({true, true, true, true});
+    printf("[TEST] Sensor polarity set to active-low (true für active-low)\n");
 
-    // === 7. Startup-Test: LEDs nacheinander blinken lassen ===
+    // 7. Startup-Test: LEDs nacheinander blinken lassen (zeigt Funktion aller Kanäle)
     cabinetLight->runStartupTest();
 
-    // === 8. Heartbeat-LED-Setup ===
-    // Die Onboard-LED blinkt alle 1s als Lebenszeichen
+    // 8. Hauptschleife: Event-Verarbeitung und Heartbeat-LED
+    //    - process(): verarbeitet Sensor- und LED-Events, Fading, IRQs
+    //    - Heartbeat: Onboard-LED blinkt im Sekundentakt als Lebenszeichen
     absolute_time_t hb_last = get_absolute_time();
     bool hb_state = false;
 
-    // === 9. Hauptschleife ===
+    // Hauptschleife: Verarbeitet Events und steuert Heartbeat
     while (true) {
-
-        // --- 9.1. Verarbeite Sensor- und LED-Events ---
+        // Event-Verarbeitung
         cabinetLight->process();
-
-        // --- 9.2. Heartbeat-LED toggeln (alle 1s) ---
+        // Heartbeat-LED toggeln (alle 1s)
         absolute_time_t now = get_absolute_time();
+        // Zeitdifferenz berechnen
         if (absolute_time_diff_us(hb_last, now) > CabinetLight::HEARTBEAT_INTERVAL_MS * 1000) {
             hb_last = now;
             hb_state = !hb_state;
+            // Onboard-LED setzen
             gpio_put(PICO_DEFAULT_LED_PIN, hb_state);
         }
-
-        // --- 9.3. CPU-Entlastung durch kurze Pause ---
-        sleep_ms(50);
+        sleep_ms(50); // Kurze Pause zur CPU-Entlastung
     }
 }

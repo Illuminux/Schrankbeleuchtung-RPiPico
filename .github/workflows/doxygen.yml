@@ -21,7 +21,7 @@ jobs:
         run: |
           cat <<EOF > ./docs/Doxyfile
           PROJECT_NAME = "Schrankbeleuchtung Firmware"
-          OUTPUT_DIRECTORY = ./html
+          OUTPUT_DIRECTORY = .
           INPUT = ../main.cpp ../cabinetLight.h ../cabinetLight.cpp
           FILE_PATTERNS = *.cpp *.h
           GENERATE_HTML = YES
@@ -31,13 +31,17 @@ jobs:
           USE_MDFILE_AS_MAINPAGE = ../README.md
           EOF
 
+
       - name: Generate Doxygen documentation
         working-directory: ./docs
         run: doxygen Doxyfile
+
+      - name: Add .nojekyll file
+        run: echo > ./docs/.nojekyll
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs/html
+          publish_dir: ./docs
           publish_branch: gh-pages

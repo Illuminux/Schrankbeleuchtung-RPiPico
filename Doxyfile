@@ -1,0 +1,9 @@
+PROJECT_NAME = "Schrankbeleuchtung Firmware"
+OUTPUT_DIRECTORY = .
+INPUT = ../main.cpp ../cabinetLight.h ../cabinetLight.cpp
+FILE_PATTERNS = *.cpp *.h
+GENERATE_HTML = YES
+GENERATE_LATEX = NO
+EXTRACT_ALL = YES
+MARKDOWN_SUPPORT = YES
+USE_MDFILE_AS_MAINPAGE = ../README.md
